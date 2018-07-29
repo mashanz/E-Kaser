@@ -31,8 +31,6 @@ Page {
 
     Rectangle {
         id: rectangle6
-        x: 540
-        y: 47
         width: 500
         height: 280
         color: appStyle.active
@@ -41,8 +39,6 @@ Page {
 
         Rectangle {
             id: rectangle4
-            x: -100
-            y: -3
             width: 400
             height: 50
             anchors.horizontalCenter: parent.horizontalCenter
@@ -78,8 +74,6 @@ Page {
 
         Rectangle {
             id: rectangle3
-            x: -100
-            y: -63
             width: 400
             height: 50
             anchors.horizontalCenter: parent.horizontalCenter
@@ -114,8 +108,6 @@ Page {
 
         Rectangle {
             id: rectangle2
-            x: -100
-            y: -123
             width: 400
             height: 50
             anchors.horizontalCenter: parent.horizontalCenter
@@ -150,7 +142,6 @@ Page {
 
         Rectangle {
             id: rectangle1
-            x: -100
             width: 400
             height: 50
             anchors.horizontalCenter: parent.horizontalCenter
