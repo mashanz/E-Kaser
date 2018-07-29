@@ -1,11 +1,12 @@
-import QtQuick 2.11
-import QtQuick.Controls 2.4
+import QtQuick 2.9
+import QtQuick.Window 2.0
+import QtQuick.Controls 2.2
 
 ApplicationWindow {
     visible: true
-    width: 640
-    height: 480
-    title: qsTr("Tabs")
+    width: 1280
+    height: 720
+    title: qsTr("Khaseer")
 
     SwipeView {
         id: swipeView
@@ -17,6 +18,10 @@ ApplicationWindow {
 
         Page2Form {
         }
+
+        Page3Form {
+        }
+
     }
 
     footer: TabBar {
@@ -24,10 +29,17 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            text: qsTr("Page 1")
+            id: satu
+            text: qsTr("Registrasi")
         }
+
         TabButton {
-            text: qsTr("Page 2")
+            text: qsTr("Menu")
         }
+
+        TabButton {
+            text: qsTr("Pembayaran")
+        }
+
     }
 }

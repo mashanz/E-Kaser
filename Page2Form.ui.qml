@@ -1,18 +1,14 @@
-import QtQuick 2.11
-import QtQuick.Controls 2.4
+import QtQuick 2.9
+import QtQuick.Controls 2.2
 
 Page {
-    width: 600
-    height: 400
+    width: 1280
+    height: 660
 
     header: Label {
-        text: qsTr("Page 2")
+        text: qsTr("Menu")
+        horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-    }
-
-    Label {
-        text: qsTr("You are on Page 2.")
-        anchors.centerIn: parent
     }
 }
