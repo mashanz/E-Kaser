@@ -5,10 +5,15 @@ Page {
     width: 1280
     height: 660
 
+    background: Rectangle {
+        color: appStyle.active
+    }
+
     header: Label {
         text: qsTr("Registrasi")
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
+        color: appStyle.fontColor
     }
 }

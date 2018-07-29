@@ -8,6 +8,10 @@ ApplicationWindow {
     height: 720
     title: qsTr("Khaseer")
 
+    property variant appStyle: Style {
+        id: style
+    }
+
     SwipeView {
         id: swipeView
         anchors.fill: parent
@@ -31,14 +35,31 @@ ApplicationWindow {
         TabButton {
             id: satu
             text: qsTr("Registrasi")
+            background: Rectangle {
+                color: {
+                    satu.activeFocus ? appStyle.active : appStyle.deactive
+                }
+            }
         }
 
         TabButton {
+            id: dua
             text: qsTr("Menu")
+            background: Rectangle {
+                color: {
+                    dua.activeFocus ? appStyle.active : appStyle.deactive
+                }
+            }
         }
 
         TabButton {
+            id: tiga
             text: qsTr("Pembayaran")
+            background: Rectangle {
+                color: {
+                    tiga.activeFocus ? appStyle.active : appStyle.deactive
+                }
+            }
         }
 
     }

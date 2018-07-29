@@ -5,6 +5,10 @@ Page {
     width: 1280
     height: 660
 
+    background: Rectangle {
+        color: appStyle.active
+    }
+
     header: Label {
         text: qsTr("Pembayaran")
         horizontalAlignment: Text.AlignHCenter
