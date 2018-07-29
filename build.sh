@@ -1,14 +1,23 @@
 #!sh
 # while True
 # do
-	# Building the app
-	sudo rm -R build
-	sudo rm -R dist
-	sudo pyrcc5 qml.qrc -o qrc.py
-	#sudo pyi-makespec --noconsole --onefile main.py
-	#sudo pyinstaller -d -y --clean build.spec --log-level DEBUG --onefile
-	#sudo dist/main
-	sudo python3 main.py
-	sudo rm *.qmlc 
-	sudo rm -R __pycache__
+
+# Clean Chace
+sudo rm -R build
+sudo rm -R dist
+
+# build Markup
+sudo pyrcc5 qml.qrc -o qrc.py
+
+# Building purpose
+sudo pyi-makespec --noconsole --onefile main.py
+sudo pyinstaller -d -y --clean build.spec --log-level DEBUG --onefile
+sudo dist/main
+
+# run Python
+#sudo python3 main.py
+
+# clean up
+sudo rm *.qmlc
+sudo rm -R __pycache__
 # done
