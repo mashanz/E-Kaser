@@ -13,6 +13,7 @@ Page {
 
     header: Label {
         text: qsTr("Menu")
+        font.bold: true
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10

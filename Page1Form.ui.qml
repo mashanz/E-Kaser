@@ -150,27 +150,19 @@ Page {
             anchors.top: parent.top
             anchors.topMargin: 0
             anchors.horizontalCenterOffset: 0
-            TextInput {
-                id: textInput1
-                property string placeholderText: "Masukan Nomor Meja"
-                Text {
-                    text: textInput1.placeholderText
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    color: appStyle.secondaryBgColor
-                    visible: !textInput1.text
-                    font.pixelSize: 18
-                }
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 15
-                anchors.top: parent.top
-                anchors.topMargin: 15
-                anchors.right: parent.right
-                anchors.left: parent.left
-                font.bold: true
+            TextField {
+                id: searchBox
+                placeholderText: "Nomor Meja"
+                inputMethodHints: Qt.ImhNoPredictiveText
+                width: 100
                 horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 18
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                background: Rectangle {
+                    color: appStyle.deactive
+                    radius: 10
+                }
             }
         }
 
