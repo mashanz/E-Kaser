@@ -12,6 +12,7 @@ Item {
 
     property color primaryBgColor: "#507642"
     property color secondaryBgColor: "#86942A"
+
     property color capsColor: "#A37B45"
 
     QtObject {

@@ -33,31 +33,29 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            id: satu
             text: qsTr("Registrasi")
             background: Rectangle {
                 color: {
-                    satu.activeFocus ? appStyle.active : appStyle.deactive
+                    tabBar.currentIndex == 0 ? appStyle.active : appStyle.deactive
                 }
+                height: 80
             }
         }
 
         TabButton {
-            id: dua
             text: qsTr("Menu")
             background: Rectangle {
                 color: {
-                    dua.activeFocus ? appStyle.active : appStyle.deactive
+                    tabBar.currentIndex == 1 ? appStyle.active : appStyle.deactive
                 }
             }
         }
 
         TabButton {
-            id: tiga
             text: qsTr("Pembayaran")
             background: Rectangle {
                 color: {
-                    tiga.activeFocus ? appStyle.active : appStyle.deactive
+                    tabBar.currentIndex == 2 ? appStyle.active : appStyle.deactive
                 }
             }
         }
