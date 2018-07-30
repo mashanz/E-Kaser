@@ -36,7 +36,7 @@ Page {
     Rectangle {
         id: rectangle1
         width: 152
-        height: 50
+        height: 40
         color: appStyle.deactive
         radius: 10
         anchors.left: parent.left
@@ -47,8 +47,10 @@ Page {
         TextInput {
             id: textInput4
             property string placeholderText: "Code"
+            anchors.verticalCenter: parent.verticalCenter
             Text {
                 text: textInput4.placeholderText
+                anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -56,10 +58,6 @@ Page {
                 visible: !textInput4.text
                 font.pixelSize: 18
             }
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 15
-            anchors.top: parent.top
-            anchors.topMargin: 15
             anchors.right: parent.right
             anchors.left: parent.left
             font.bold: true
@@ -71,7 +69,7 @@ Page {
     Rectangle {
         id: rectangle2
         width: 426
-        height: 50
+        height: 40
         color: appStyle.deactive
         radius: 10
         anchors.left: rectangle1.right
@@ -82,8 +80,10 @@ Page {
         TextInput {
             id: textInput2
             property string placeholderText: "Cari Menu..."
+            anchors.verticalCenter: parent.verticalCenter
             Text {
                 text: textInput2.placeholderText
+                anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -91,10 +91,6 @@ Page {
                 visible: !textInput2.text
                 font.pixelSize: 18
             }
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 15
-            anchors.top: parent.top
-            anchors.topMargin: 15
             anchors.right: parent.right
             anchors.left: parent.left
             font.bold: true
@@ -105,20 +101,22 @@ Page {
 
     Rectangle {
         id: rectangle3
-        width: 426
-        height: 50
+        width: 362
+        height: 40
         color: appStyle.deactive
         radius: 10
         anchors.left: rectangle2.right
-        anchors.leftMargin: 10
+        anchors.leftMargin: 74
         anchors.top: rectangle.bottom
         anchors.topMargin: 5
 
         TextInput {
             id: textInput3
             property string placeholderText: "Kode Promo"
+            anchors.verticalCenter: parent.verticalCenter
             Text {
                 text: textInput3.placeholderText
+                anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -126,10 +124,6 @@ Page {
                 visible: !textInput3.text
                 font.pixelSize: 18
             }
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 15
-            anchors.top: parent.top
-            anchors.topMargin: 15
             anchors.right: parent.right
             anchors.left: parent.left
             font.bold: true
@@ -140,115 +134,173 @@ Page {
 
     TableView {
         id: tableView
-        width: 588
+        width: 600
         anchors.left: parent.left
         anchors.leftMargin: 10
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0
+        anchors.bottomMargin: 10
         anchors.top: rectangle1.bottom
         anchors.topMargin: 10
         currentRow: 0
 
         frameVisible: false
-           sortIndicatorVisible: true
-           Layout.minimumWidth: 400
-           Layout.minimumHeight: 240
-           Layout.preferredWidth: 600
-           Layout.preferredHeight: 400
+        sortIndicatorVisible: true
+        Layout.minimumWidth: 400
+        Layout.minimumHeight: 240
+        Layout.preferredWidth: 600
+        Layout.preferredHeight: 400
 
-           TableViewColumn {
-               id: code
-               title: "Code"
-               role: "code"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 3 //- authorColumn.width
-           }
+        TableViewColumn {
+            id: code
+            title: "Code"
+            role: "code"
+            movable: false
+            resizable: false
+            width: tableView.viewport.width / 3 //- authorColumn.width
+        }
 
-           TableViewColumn {
-               id: menu
-               title: "Menu"
-               role: "menu"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 3
-           }
+        TableViewColumn {
+            id: menu
+            title: "Menu"
+            role: "menu"
+            movable: false
+            resizable: false
+            width: tableView.viewport.width / 3
+        }
 
-           TableViewColumn {
-               id: available
-               title: "Available"
-               role: "available"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 3
-           }
-       }
+        TableViewColumn {
+            id: available
+            title: "Available"
+            role: "available"
+            movable: false
+            resizable: false
+            width: tableView.viewport.width / 3
+        }
+
+        style: TableViewStyle {
+            headerDelegate: Rectangle {
+                height: textItem.implicitHeight * 1.2
+                color: appStyle.capsColor
+                //width: textItem.implicitWidth
+                Text {
+                    id: textItem
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    // anchors.leftMargin: 100
+                    //anchors.rightMargin: 100
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: styleData.value
+                    elide: Text.ElideRight
+                    color: appStyle.active
+                    renderType: Text.NativeRendering
+                }
+                Rectangle {
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 1
+                    anchors.topMargin: 1
+                    width: 1
+                    color: "#ccc"
+                }
+            }
+        }
+    }
 
     TableView {
         id: tableView2
-        x: 682
-        width: 598
+        width: 600
         anchors.top: rectangle2.bottom
         anchors.topMargin: 10
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 0
+        anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
         currentRow: 0
 
         frameVisible: false
-           sortIndicatorVisible: true
+        sortIndicatorVisible: true
 
+        Layout.minimumWidth: 400
+        Layout.minimumHeight: 240
+        Layout.preferredWidth: 600
+        Layout.preferredHeight: 400
 
-           Layout.minimumWidth: 400
-           Layout.minimumHeight: 240
-           Layout.preferredWidth: 600
-           Layout.preferredHeight: 400
+        TableViewColumn {
+            id: qty
+            title: "Qty"
+            role: "qty"
+            movable: false
+            resizable: false
+            width: tableView2.viewport.width / 5 //- authorColumn.width
+        }
 
-           TableViewColumn {
-               id: qty
-               title: "Qty"
-               role: "qty"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 5 //- authorColumn.width
-           }
+        TableViewColumn {
+            id: nama
+            title: "Menu"
+            role: "menu"
+            movable: false
+            resizable: false
+            width: tableView2.viewport.width / 5
+        }
 
-           TableViewColumn {
-               id: nama
-               title: "Menu"
-               role: "menu"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 5
-           }
+        TableViewColumn {
+            id: catatan
+            title: "Catatan"
+            role: "catatan"
+            movable: false
+            resizable: false
+            width: tableView2.viewport.width / 5
+        }
 
-           TableViewColumn {
-               id: catatan
-               title: "Catatan"
-               role: "catatan"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 5
-           }
+        TableViewColumn {
+            id: harga1
+            title: "Harga Satuan"
+            role: "satuan"
+            movable: false
+            resizable: false
+            width: tableView2.viewport.width / 5
+        }
 
-           TableViewColumn {
-               id: harga1
-               title: "Satuan"
-               role: "satuan"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 5
-           }
+        TableViewColumn {
+            id: total
+            title: "Sub Total"
+            role: "subtotal"
+            movable: false
+            resizable: false
+            width: tableView2.viewport.width / 5
+        }
 
-           TableViewColumn {
-               id: total
-               title: "Total"
-               role: "total"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 5
-           }
+        style: TableViewStyle {
+            headerDelegate: Rectangle {
+                height: textItem2.implicitHeight * 1.2
+                color: appStyle.capsColor
+                //width: textItem.implicitWidth
+                Text {
+                    id: textItem2
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    // anchors.leftMargin: 100
+                    //anchors.rightMargin: 100
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: styleData.value
+                    elide: Text.ElideRight
+                    color: appStyle.active
+                    renderType: Text.NativeRendering
+                }
+                Rectangle {
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 1
+                    anchors.topMargin: 1
+                    width: 1
+                    color: "#ccc"
+                }
+            }
+        }
     }
 
     RoundButton {
@@ -263,13 +315,15 @@ Page {
         x: 620
         y: 305
         text: "<"
+
     }
 
        Button {
            id: button
-           y: 15
            height: 40
-           text: qsTr("Button")
+           text: qsTr("Submit")
+           anchors.top: rectangle.bottom
+           anchors.topMargin: 5
            anchors.right: parent.right
            anchors.rightMargin: 10
            anchors.left: rectangle3.right
@@ -282,15 +336,16 @@ Page {
                        border.color: appStyle.active
                        radius: 10
                        gradient: Gradient {
-                           GradientStop { position: 0 ; color: control.pressed ? appStyle.active : appStyle.deactive }
-                           GradientStop { position: 1 ; color: control.pressed ? appStyle.active : appStyle.deactive }
+                           GradientStop { position: 0 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
+                           GradientStop { position: 1 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
                        }
                    }
-               }
+           }
        }
 }
 
 /*##^## Designer {
     D{i:4;anchors_y:11}D{i:7;anchors_y:0}D{i:18;anchors_height:539;anchors_width:598;anchors_y:70}
+D{i:25;anchors_y:15}
 }
  ##^##*/

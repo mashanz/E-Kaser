@@ -2,7 +2,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.2
-
+import QtQuick.Controls.Styles 1.4
 Page {
     id: page
     width: 1280
@@ -43,58 +43,88 @@ Page {
         currentRow: 0
 
         frameVisible: false
-           sortIndicatorVisible: true
+        sortIndicatorVisible: true
 
 
-           Layout.minimumWidth: 400
-           Layout.minimumHeight: 240
-           Layout.preferredWidth: 600
-           Layout.preferredHeight: 400
+        Layout.minimumWidth: 400
+        Layout.minimumHeight: 240
+        Layout.preferredWidth: 600
+        Layout.preferredHeight: 400
 
-           TableViewColumn {
-               id: qty1
-               title: "Qty"
-               role: "qty"
-               movable: false
-               resizable: false
-               width: tableView3.viewport.width / 5 //- authorColumn.width
-           }
+        TableViewColumn {
+            id: qty1
+            title: "Qty"
+            role: "qty"
+            movable: false
+            resizable: false
+            width: tableView3.viewport.width / 5 //- authorColumn.width
+        }
 
-           TableViewColumn {
-               id: nama1
-               title: "Menu"
-               role: "menu"
-               movable: false
-               resizable: false
-               width: tableView3.viewport.width / 5
-           }
+        TableViewColumn {
+            id: nama1
+            title: "Menu"
+            role: "menu"
+            movable: false
+            resizable: false
+            width: tableView3.viewport.width / 5
+        }
 
-           TableViewColumn {
-               id: catatan1
-               title: "Catatan"
-               role: "catatan"
-               movable: false
-               resizable: false
-               width: tableView3.viewport.width / 5
-           }
+        TableViewColumn {
+            id: catatan1
+            title: "Catatan"
+            role: "catatan"
+            movable: false
+            resizable: false
+            width: tableView3.viewport.width / 5
+        }
 
-           TableViewColumn {
-               id: harga11
-               title: "Satuan"
-               role: "satuan"
-               movable: false
-               resizable: false
-               width: tableView3.viewport.width / 5
-           }
+        TableViewColumn {
+            id: harga11
+            title: "Satuan"
+            role: "satuan"
+            movable: false
+            resizable: false
+            width: tableView3.viewport.width / 5
+        }
 
-           TableViewColumn {
-               id: total1
-               title: "Total"
-               role: "total"
-               movable: false
-               resizable: false
-               width: tableView3.viewport.width / 5
-           }
+        TableViewColumn {
+            id: total1
+            title: "Total"
+            role: "total"
+            movable: false
+            resizable: false
+            width: tableView3.viewport.width / 5
+        }
+
+        style: TableViewStyle {
+            headerDelegate: Rectangle {
+                height: textItem2.implicitHeight * 1.2
+                color: appStyle.capsColor
+                //width: textItem.implicitWidth
+                Text {
+                    id: textItem2
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    // anchors.leftMargin: 100
+                    //anchors.rightMargin: 100
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: styleData.value
+                    elide: Text.ElideRight
+                    color: appStyle.active
+                    renderType: Text.NativeRendering
+                }
+                Rectangle {
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 1
+                    anchors.topMargin: 1
+                    width: 1
+                    color: "#ccc"
+                }
+            }
+        }
     }
 
 //    TableView {
