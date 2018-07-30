@@ -31,7 +31,6 @@ Window {
             color: appStyle.deactive
             radius: 10
             anchors.verticalCenter: parent.verticalCenter
-            anchors.top: rectangle3.bottom
             anchors.topMargin: 10
             anchors.horizontalCenterOffset: 0
 
@@ -101,7 +100,7 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                color: appStyle.capsColor
+                color: appStyle.deactive
                 font.pixelSize: 18
             }
             anchors.horizontalCenter: parent.horizontalCenter
@@ -117,11 +116,20 @@ Window {
                         border.color: appStyle.active
                         radius: 10
                         gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? appStyle.active : appStyle.deactive }
-                            GradientStop { position: 1 ; color: control.pressed ? appStyle.active : appStyle.deactive }
+                            GradientStop { position: 0 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
+                            GradientStop { position: 1 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
                         }
                     }
-                }
+            }
+        }
+
+        Image {
+            id: image
+            x: 285
+            y: 65
+            width: 150
+            height: 118
+            source: "logo.png"
         }
     }
 
