@@ -5,6 +5,8 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.2
 
+import QtQuick.Controls.Styles 1.2
+
 Window {
     id: window
     visible: true
@@ -23,27 +25,13 @@ Window {
     }
 
     Label {
-        id : label
-        text: qsTr("Daftar Pesanan")
-        anchors.top: parent.top
-        anchors.topMargin: 10
-        font.bold: true
-        horizontalAlignment: Text.AlignLeft
-        font.pixelSize: Qt.application.font.pixelSize * 2
-        padding: 10
-        color: appStyle.primaryBgColor
-    }
-
-    Label {
         id : label1
-        text: qsTr("Total:")
-        anchors.top: parent.top
-        anchors.topMargin: 10
-        anchors.right: labelTotal.left
-        anchors.rightMargin: 10
+        text: qsTr("Total")
+        anchors.right: parent.right
+        anchors.rightMargin: 50
         font.bold: true
         horizontalAlignment: Text.AlignLeft
-        font.pixelSize: Qt.application.font.pixelSize * 2
+        font.pixelSize: Qt.application.font.pixelSize
         padding: 10
         color: appStyle.primaryBgColor
     }
@@ -51,8 +39,8 @@ Window {
     Label {
         id : labelTotal
         text: qsTr("Rp 1.200.500")
-        anchors.top: parent.top
-        anchors.topMargin: 10
+        anchors.top: label1.bottom
+        anchors.topMargin: -25
         anchors.right: parent.right
         anchors.rightMargin: 10
         font.bold: true
@@ -65,8 +53,8 @@ Window {
     Label {
         id : labelMeja
         text: qsTr("Meja")
-        anchors.left: label.right
-        anchors.leftMargin: 30
+        anchors.left: parent.left
+        anchors.leftMargin: 50
         font.bold: true
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize
@@ -119,52 +107,96 @@ Window {
         anchors.leftMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        anchors.top: label.bottom
-        anchors.topMargin: 10
+        anchors.top: labelCustomer1.bottom
+        anchors.topMargin: 9
         currentRow: 0
-
         frameVisible: false
-           sortIndicatorVisible: true
-           Layout.minimumWidth: 400
-           Layout.minimumHeight: 240
-           Layout.preferredWidth: 600
-           Layout.preferredHeight: 400
+        sortIndicatorVisible: true
+        Layout.minimumWidth: 400
+        Layout.preferredWidth: 600
+        Layout.preferredHeight: 400
+        Layout.minimumHeight: 240
 
-           TableViewColumn {
-               id: qty
-               title: "Qty"
-               role: "qty"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 4
-           }
+        TableViewColumn {
+            id: qty
+            title: "Qty"
+            role: "qty"
+            movable: false
+            resizable: false
+            width: tableView.viewport.width * 1 / 10
+        }
 
-           TableViewColumn {
-               id: menu
-               title: "Menu"
-               role: "menu"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 4
-           }
+        TableViewColumn {
+            id: menu
+            title: "Menu"
+            role: "menu"
+            movable: false
+            resizable: false
+            width: tableView.viewport.width * 3 / 10
+        }
 
-           TableViewColumn {
-               id: price1
-               title: "Harga Satuan"
-               role: "price1"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 4
-           }
+        TableViewColumn {
+            id: catat
+            title: "Catat"
+            role: "catat"
+            movable: false
+            resizable: false
+            width: tableView.viewport.width / 5
+        }
 
-           TableViewColumn {
-               id: total
-               title: "Sub Total"
-               role: "subtotal"
-               movable: false
-               resizable: false
-               width: tableView.viewport.width / 4
-           }
+        TableViewColumn {
+            id: price1
+            title: "Harga Satuan"
+            role: "price1"
+            movable: false
+            resizable: false
+            width: tableView.viewport.width / 5
+        }
+
+        TableViewColumn {
+            id: total
+            title: "Sub Total"
+            role: "subtotal"
+            movable: false
+            resizable: false
+            width: tableView.viewport.width / 5
+        }
+
+        itemDelegate: Text {
+            color:  styleData.row > 2 ? "red" : "black"
+            text: styleData.value
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        style: TableViewStyle {
+            headerDelegate: Rectangle {
+                height: textItem.implicitHeight * 1.2
+                color: appStyle.capsColor
+                //width: textItem.implicitWidth
+                Text {
+                    id: textItem
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    // anchors.leftMargin: 100
+                    //anchors.rightMargin: 100
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: styleData.value
+                    elide: Text.ElideRight
+                    color: appStyle.active
+                    renderType: Text.NativeRendering
+                }
+                Rectangle {
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 1
+                    anchors.topMargin: 1
+                    width: 1
+                    color: "#ccc"
+                }
+            }
+        }
     }
 }
 

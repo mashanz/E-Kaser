@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="03209676-09e2-4320-afda-c7594fb1784c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/Customer/Customer/main.qml" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/Customer/main.qml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Customer/Customer/qml.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Customer/Customer/qml.qrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/Login/qml.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Login/Login/qml.qrc" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/qml.qrc">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="30" />
+              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -47,13 +45,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qml.qrc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="qml.qrc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Login/Login/qml.qrc">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Style.qml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Login/Login/Style.qml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="41" lean-forward="true" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.qml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Customer/Customer/main.qml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -179,6 +191,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -230,7 +243,7 @@
     <entry file="file://$PROJECT_DIR$/qml.qrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="30" />
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -244,9 +257,19 @@
     <entry file="file://$PROJECT_DIR$/Login/Login/qml.qrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Login/Login/Style.qml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="41" lean-forward="true" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Customer/Customer/main.qml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
