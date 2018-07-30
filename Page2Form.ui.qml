@@ -315,7 +315,6 @@ Page {
         x: 620
         y: 305
         text: "<"
-
     }
 
        Button {

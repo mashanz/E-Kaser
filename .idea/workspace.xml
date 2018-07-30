@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03209676-09e2-4320-afda-c7594fb1784c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Login/Login/main.qml" beforeDir="false" afterPath="$PROJECT_DIR$/Login/Login/main.qml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/Login/qml.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/Login/Login/qml.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Page2Form.ui.qml" beforeDir="false" afterPath="$PROJECT_DIR$/Page2Form.ui.qml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,11 +45,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qml.qrc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="qml.qrc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Login/Login/qml.qrc">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Page2Form.ui.qml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Page2Form.ui.qml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="318" lean-forward="true" selection-start-line="318" selection-end-line="318" />
             </state>
           </provider>
         </entry>
@@ -79,6 +87,7 @@
       <list>
         <option value="$PROJECT_DIR$/Customer/Customer/qml.qrc" />
         <option value="$PROJECT_DIR$/Login/Login/qml.qrc" />
+        <option value="$PROJECT_DIR$/Page2Form.ui.qml" />
       </list>
     </option>
   </component>
@@ -269,6 +278,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Page2Form.ui.qml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="318" lean-forward="true" selection-start-line="318" selection-end-line="318" />
         </state>
       </provider>
     </entry>
