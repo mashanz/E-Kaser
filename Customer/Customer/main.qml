@@ -12,6 +12,16 @@ Window {
     height: 720
     title: qsTr("Daftar Pesanan")
 
+    property variant appStyle: Style {
+        id: style
+    }
+
+    Rectangle {
+        id: rectangle
+            color: appStyle.active
+            anchors.fill: parent
+    }
+
     Label {
         id : label
         text: qsTr("Daftar Pesanan")
@@ -155,5 +165,10 @@ Window {
                resizable: false
                width: tableView.viewport.width / 4
            }
-       }
+    }
 }
+
+/*##^## Designer {
+    D{i:39;anchors_height:200;anchors_width:200;anchors_x:308;anchors_y:10}
+}
+ ##^##*/
