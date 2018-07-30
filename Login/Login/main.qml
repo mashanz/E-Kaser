@@ -129,6 +129,9 @@ Window {
             y: 65
             width: 150
             height: 118
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: rectangle4.top
+            anchors.bottomMargin: 25
             source: "logo.png"
         }
     }
