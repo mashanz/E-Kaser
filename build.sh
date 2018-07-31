@@ -11,7 +11,8 @@ pyrcc5 qml.qrc -o qrc.py
 
 # Building purpose
 # pyi-makespec --noconsole --onefile main.py
-pyinstaller -d -y --clean build.spec --log-level DEBUG --onefile
+# pyinstaller -d -y --clean build.spec --log-level DEBUG --onefile
+pyinstaller -d -y --clean buildUnix.spec --log-level DEBUG --onefile
 #dist/main
 
 # run Python
