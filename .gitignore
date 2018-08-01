@@ -41,7 +41,7 @@ Login/Login/build/*
 Customer/Customer/build/*
 Customer/Customer/dist/*
 *.qmlc
-*.qrc.py
+qrc.py
 # qtcreator generated files
 *.pro.user*
 
