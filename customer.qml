@@ -20,7 +20,7 @@ Window {
 
     Rectangle {
         id: rectangle
-            color: appStyle.active
+            color: appStyle.background
             anchors.fill: parent
     }
 
@@ -33,7 +33,7 @@ Window {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.button2
     }
 
     Label {
@@ -47,7 +47,7 @@ Window {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.text
     }
 
     Label {
@@ -59,7 +59,7 @@ Window {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.button2
     }
 
     Label {
@@ -72,7 +72,7 @@ Window {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.text
     }
 
     Label {
@@ -83,7 +83,7 @@ Window {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.button2
     }
 
     Label {
@@ -96,7 +96,7 @@ Window {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.text
     }
 
     TableView {
@@ -171,7 +171,7 @@ Window {
         style: TableViewStyle {
             headerDelegate: Rectangle {
                 height: textItem.implicitHeight * 1.2
-                color: appStyle.capsColor
+                color: appStyle.header1
                 //width: textItem.implicitWidth
                 Text {
                     id: textItem
@@ -183,7 +183,7 @@ Window {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
-                    color: appStyle.deactive
+                    color: appStyle.background
                     renderType: Text.NativeRendering
                 }
                 Rectangle {
@@ -193,7 +193,7 @@ Window {
                     anchors.bottomMargin: 1
                     anchors.topMargin: 1
                     width: 1
-                    color: appStyle.deactive
+                    color: appStyle.header1
                 }
             }
         }

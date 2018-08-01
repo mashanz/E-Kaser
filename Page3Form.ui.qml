@@ -9,7 +9,7 @@ Page {
     height: 660
 
     background: Rectangle {
-        color: appStyle.active
+        color: appStyle.background
     }
 
     header: Label {
@@ -18,13 +18,13 @@ Page {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.text
     }
 
     Rectangle {
         id: rectangle
-        height: 5
-        color: appStyle.deactive
+        height: 2
+        color: appStyle.border
         anchors.right: parent.right
         anchors.rightMargin: 0
         anchors.left: parent.left
@@ -99,7 +99,7 @@ Page {
         style: TableViewStyle {
             headerDelegate: Rectangle {
                 height: textItem2.implicitHeight * 1.2
-                color: appStyle.capsColor
+                color: appStyle.header1
                 //width: textItem.implicitWidth
                 Text {
                     id: textItem2
@@ -111,7 +111,7 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
-                    color: appStyle.deactive
+                    color: appStyle.background
                     renderType: Text.NativeRendering
                 }
                 Rectangle {
@@ -121,7 +121,7 @@ Page {
                     anchors.bottomMargin: 1
                     anchors.topMargin: 1
                     width: 1
-                    color: "#ccc"
+                    color: appStyle.header1
                 }
             }
         }
@@ -140,7 +140,7 @@ Page {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.text
     }
 
     Label {
@@ -155,7 +155,7 @@ Page {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize
         padding: 10
-        color: appStyle.deactive
+        color: appStyle.button1
     }
 
     Rectangle {
@@ -164,9 +164,7 @@ Page {
         y: 15
         width: 451
         height: 41
-
-        color : appStyle.active
-
+        color : appStyle.background
         Button {
             id: button2
             Text {
@@ -176,7 +174,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                color: appStyle.deactive
+                color: appStyle.background
                 font.pixelSize: 18
             }
             anchors.left: button1.right
@@ -188,11 +186,10 @@ Page {
                         implicitWidth: 100
                         implicitHeight: 40
                         border.width: control.activeFocus ? 2 : 1
-                        border.color: appStyle.active
+                        border.color: appStyle.border
                         radius: 10
                         gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
-                            GradientStop { position: 1 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
+                            GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
                         }
                     }
             }
@@ -208,7 +205,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                color: appStyle.deactive
+                color: appStyle.background
                 font.pixelSize: 18
             }
             anchors.horizontalCenter: parent.horizontalCenter
@@ -219,11 +216,10 @@ Page {
                         implicitWidth: 100
                         implicitHeight: 40
                         border.width: control.activeFocus ? 2 : 1
-                        border.color: appStyle.active
+                        border.color: appStyle.border
                         radius: 10
                         gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
-                            GradientStop { position: 1 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
+                            GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
                         }
                     }
             }
@@ -239,7 +235,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                color: appStyle.deactive
+                color: appStyle.background
                 font.pixelSize: 18
             }
             anchors.right: button1.left
@@ -251,11 +247,10 @@ Page {
                         implicitWidth: 100
                         implicitHeight: 40
                         border.width: control.activeFocus ? 2 : 1
-                        border.color: appStyle.active
+                        border.color: appStyle.border
                         radius: 10
                         gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
-                            GradientStop { position: 1 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
+                            GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
                         }
                     }
             }
@@ -278,7 +273,6 @@ Page {
 
         frameVisible: false
         sortIndicatorVisible: true
-
 
         Layout.minimumWidth: 400
         Layout.minimumHeight: 240
@@ -316,7 +310,7 @@ Page {
         style: TableViewStyle {
             headerDelegate: Rectangle {
                 height: textItem3.implicitHeight * 1.2
-                color: appStyle.capsColor
+                color: appStyle.header1
                 //width: textItem.implicitWidth
                 Text {
                     id: textItem3
@@ -328,7 +322,7 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
-                    color: appStyle.deactive
+                    color: appStyle.background
                     renderType: Text.NativeRendering
                 }
                 Rectangle {
@@ -338,7 +332,7 @@ Page {
                     anchors.bottomMargin: 1
                     anchors.topMargin: 1
                     width: 1
-                    color: "#ccc"
+                    color: appStyle.header1
                 }
             }
         }

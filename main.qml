@@ -32,32 +32,66 @@ ApplicationWindow {
     footer: TabBar {
         id: tabBar
         currentIndex: swipeView.currentIndex
+        height: 40
         background: Rectangle {
-                color: appStyle.active
-        }
-        TabButton {
-            text: qsTr("Registrasi")
-            background: Rectangle {
-                color: tabBar.currentIndex == 0 ? appStyle.active : appStyle.deactive
-                radius: 0
-            }
+                color: appStyle.background
         }
 
         TabButton {
-            text: qsTr("Menu")
+            Text {
+                text: qsTr("Registrasi")
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.bold: true
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: tabBar.currentIndex == 0 ? appStyle.button : appStyle.background
+                font.pixelSize: 18
+            }
             background: Rectangle {
-                color: tabBar.currentIndex == 1 ? appStyle.active : appStyle.deactive
+                color: tabBar.currentIndex == 0 ? appStyle.background : appStyle.header1
                 radius: 0
             }
+            anchors.bottom: parent.bottom
+            height: 40
         }
 
         TabButton {
-            text: qsTr("Pembayaran")
+            Text {
+                text: qsTr("Menu")
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.bold: true
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: tabBar.currentIndex == 1 ? appStyle.button : appStyle.background
+                font.pixelSize: 18
+            }
             background: Rectangle {
-                color: tabBar.currentIndex == 2 ? appStyle.active : appStyle.deactive
+                color: tabBar.currentIndex == 1 ? appStyle.background : appStyle.header1
                 radius: 0
             }
+            anchors.bottom: parent.bottom
+            height: 40
+        }
 
+        TabButton {
+            Text {
+                text: qsTr("Pembayaran")
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.bold: true
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: tabBar.currentIndex == 2 ? appStyle.button : appStyle.background
+                font.pixelSize: 18
+            }
+            background: Rectangle {
+                color: tabBar.currentIndex == 2 ? appStyle.background : appStyle.header1
+                radius: 0
+            }
+            anchors.bottom: parent.bottom
+            height: 40
         }
     }
 }
