@@ -20,125 +20,155 @@ Window {
 
     Rectangle {
         id: rectangle
-        color: appStyle.active
+        color: appStyle.background
         anchors.fill: parent
 
         Rectangle {
-            id: rectangle4
-            width: 400
-            height: 40
+            id: rectangle1
+            width: 452
+            height: 338
+            color: appStyle.bgCard
             anchors.horizontalCenter: parent.horizontalCenter
-            color: appStyle.deactive
-            radius: 10
             anchors.verticalCenter: parent.verticalCenter
-            anchors.topMargin: 10
-            anchors.horizontalCenterOffset: 0
-
-            TextInput {
-                id: textInput4
-                property string placeholderText: "Masukan Email"
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
-                Text {
-                    text: textInput4.placeholderText
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    color: appStyle.secondaryBgColor
-                    visible: !textInput4.text
-                    font.pixelSize: 18
-                }
-                font.bold: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 18
-            }
-        }
-
-        Rectangle {
-            id: rectangle2
-            width: 400
-            height: 40
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: appStyle.deactive
+            border.color: appStyle.border
+            border.width: 2
             radius: 10
-            anchors.top: rectangle4.bottom
-            anchors.topMargin: 10
-            anchors.horizontalCenterOffset: 0
 
-            TextInput {
-                id: textInput2
-                property string placeholderText: "Password"
-                anchors.verticalCenter: parent.verticalCenter
+            Image {
+                id: image
+                x: 181
+                y: 8
+                width: 150
+                height: 118
+                anchors.horizontalCenterOffset: 1
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: rectangle4.top
+                anchors.bottomMargin: 15
+                source: "logo.png"
+            }
+
+            Button {
+                id: button
+                width: 400
+                height: 40
+                anchors.horizontalCenterOffset: 1
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: rectangle2.bottom
+                anchors.topMargin: 20
+                anchors.leftMargin: 10
+
                 Text {
-                    text: textInput2.placeholderText
-                    anchors.verticalCenter: parent.verticalCenter
+                    text: qsTr("Login")
                     anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.bold: true
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    color: appStyle.secondaryBgColor
-                    visible: !textInput2.text
+                    color: appStyle.background
                     font.pixelSize: 18
                 }
-                anchors.right: parent.right
-                anchors.left: parent.left
-                font.bold: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 18
-            }
-        }
 
-        Button {
-            id: button
-            width: 400
-            height: 40
-            Text {
-                text: qsTr("Login")
-                font.bold: true
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: appStyle.deactive
-                font.pixelSize: 18
-            }
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: rectangle2.bottom
-            anchors.topMargin: 10
-            anchors.leftMargin: 10
-
-            style: ButtonStyle {
+                style: ButtonStyle {
                     background: Rectangle {
                         implicitWidth: 100
                         implicitHeight: 25
                         border.width: control.activeFocus ? 2 : 1
-                        border.color: appStyle.active
+                        border.color: appStyle.border
                         radius: 10
                         gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
-                            GradientStop { position: 1 ; color: control.pressed ? appStyle.deactive : appStyle.capsColor }
+                            GradientStop { position: 0 ; color: control.pressed ? appStyle.inputTxt : appStyle.button }
+                            GradientStop { position: 1 ; color: control.pressed ? appStyle.inputTxt : appStyle.button }
                         }
                     }
+                }
+            }
+
+            Rectangle {
+                id: rectangle2
+                width: 400
+                height: 40
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: appStyle.inputTxt
+                radius: 10
+                anchors.top: rectangle4.bottom
+                anchors.topMargin: 20
+                anchors.horizontalCenterOffset: 1
+                border.color: appStyle.border
+                border.width: 2
+
+                Text {
+                    id: text1
+                    text: textInput2.placeholderText
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    color: appStyle.hint
+                    visible: !textInput2.text
+                    font.pixelSize: 18
+                }
+
+                TextInput {
+                    id: textInput2
+                    property string placeholderText: "password"
+                    y: 0
+                    font.bold: true
+                    color: appStyle.text
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: 18
+                }
+            }
+
+            Rectangle {
+                id: rectangle4
+                width: 400
+                height: 40
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: appStyle.inputTxt
+                radius: 10
+                anchors.verticalCenterOffset: 10
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.topMargin: 10
+                anchors.horizontalCenterOffset: 1
+                border.color: appStyle.border
+                border.width: 2
+
+                Text {
+                    id: text2
+                    text: textInput4.placeholderText
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.top: parent.top
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    color: appStyle.hint
+                    visible: !textInput4.text
+                    font.pixelSize: 18
+                }
+
+                TextInput {
+                    id: textInput4
+                    property string placeholderText: "username"
+                    font.bold: true
+                    color: appStyle.text
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: 18
+                }
             }
         }
-
-        Image {
-            id: image
-            x: 285
-            y: 65
-            width: 150
-            height: 118
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: rectangle4.top
-            anchors.bottomMargin: 25
-            source: "logo.png"
-        }
     }
-
 }
 
 /*##^## Designer {
-    D{i:6;anchors_y:0}D{i:9;anchors_y:15}
+    D{i:31;anchors_x:215;anchors_y:232}D{i:32;anchors_x:0;anchors_y:0}D{i:29;anchors_x:158;anchors_y:9}
 }
  ##^##*/

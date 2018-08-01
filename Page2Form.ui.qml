@@ -206,6 +206,30 @@ Page {
                 }
             }
         }
+
+        // model : [
+        //     {
+        //         qty: "2",
+        //         nama: "Ayam Bakar",
+        //         catatan: "Jangan dibakar",
+        //         harga1: "10.000",
+        //         total: "20.000"
+        //     },
+        //     {
+        //         qty: "2",
+        //         nama: "Ayam Rebus",
+        //         catatan: "Jangan dibakar",
+        //         harga1: "10.000",
+        //         total: "20.000"
+        //     },
+        //     {
+        //         qty: "2",
+        //         nama: "Ayam Goreng",
+        //         catatan: "Jangan dibakar",
+        //         harga1: "10.000",
+        //         total: "20.000"
+        //     }
+        // ]
     }
 
     TableView {
