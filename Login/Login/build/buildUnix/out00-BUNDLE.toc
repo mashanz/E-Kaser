@@ -1,3 +1,0 @@
-([('main',
-   '/Users/bilinedev/DesktopApp/E-Kasir/Login/Login/dist/main',
-   'EXECUTABLE')],)
