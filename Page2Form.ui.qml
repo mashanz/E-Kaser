@@ -320,7 +320,16 @@ Page {
        Button {
            id: button
            height: 40
-           text: qsTr("Submit")
+           Text {
+                text: qsTr("Submit")
+                font.bold: true
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.deactive
+                font.pixelSize: 18
+            }
            anchors.top: rectangle.bottom
            anchors.topMargin: 5
            anchors.right: parent.right

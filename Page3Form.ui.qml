@@ -169,7 +169,16 @@ Page {
 
         Button {
             id: button2
-            text: qsTr("Voucher/Promo")
+            Text {
+                text: qsTr("Voucher")
+                font.bold: true
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.deactive
+                font.pixelSize: 18
+            }
             anchors.left: button1.right
             anchors.leftMargin: 10
             anchors.top: parent.top
@@ -192,7 +201,16 @@ Page {
         Button {
             id: button1
             x: 50
-            text: qsTr("Kredit")
+            Text {
+                text: qsTr("Kredit")
+                font.bold: true
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.deactive
+                font.pixelSize: 18
+            }
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             anchors.topMargin: 0
@@ -214,7 +232,16 @@ Page {
         Button {
             id: button
             x: 8
-            text: qsTr("Debit")
+            Text {
+                text: qsTr("Debit")
+                font.bold: true
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.deactive
+                font.pixelSize: 18
+            }
             anchors.right: button1.left
             anchors.rightMargin: 10
             anchors.top: parent.top
