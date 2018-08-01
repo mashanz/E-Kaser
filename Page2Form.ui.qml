@@ -20,7 +20,7 @@ Page {
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-        color: appStyle.primaryBgColor
+        color: appStyle.deactive
     }
 
     Rectangle {
@@ -192,7 +192,7 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
-                    color: appStyle.active
+                    color: appStyle.deactive
                     renderType: Text.NativeRendering
                 }
                 Rectangle {
@@ -287,7 +287,7 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
-                    color: appStyle.active
+                    color: appStyle.deactive
                     renderType: Text.NativeRendering
                 }
                 Rectangle {
