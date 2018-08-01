@@ -5,6 +5,10 @@
         <file>Page2Form.ui.qml</file>
         <file>Page3Form.ui.qml</file>
         <file>main.qml</file>
+        <file>login.qml</file>
+        <file>customer.qml</file>
+        <file>logo.png</file>
+        <file>food.ico</file>
         <file>qtquickcontrols2.conf</file>
         <file>Style.qml</file>
     </qresource>

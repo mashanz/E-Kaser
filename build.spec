@@ -17,50 +17,53 @@ print("MY DIR"+pyqt_dir)
 print("MY DLL"+pyqt_dlls)
 
 added_files = [
-         (os.path.join(qml_dir, 'QtQuick'), 'qml/QtQuick'),
-         (os.path.join(qml_dir, 'QtQuick.2'), 'qml/QtQuick.2'),
-         ( 'C:\\Users\\hanjara\\Desktop\\ksr\\qtquickcontrols2.conf', '.' ),
-         ( 'C:\\Users\\hanjara\\Desktop\\ksr\\*.qml', '.' ),
-         ( 'C:\\Users\\hanjara\\Desktop\\ksr\\*.qrc', '.' )
-         ]
+     (os.path.join(qml_dir, 'QtQuick'), 'qml/QtQuick'),
+     (os.path.join(qml_dir, 'QtQuick.2'), 'qml/QtQuick.2'),
+     ( 'qtquickcontrols2.conf', '.' ),
+     ( '*.png', '.' ),
+     ( '*.ico', '.' ),
+     ( '*.qml', '.' ),
+     ( '*.qrc', '.' )
+]
 
 a = Analysis(['main.py'],
-     pathex=['.', pyqt_dir, pyqt_dlls],
-     binaries=None,
-     datas= added_files,
-     hiddenimports=[],
-     hookspath=None,
-     runtime_hooks=None,
-     excludes=None,
-     cipher=block_cipher)
+    pathex=['.', pyqt_dir, pyqt_dlls],
+    binaries=None,
+    datas= added_files,
+    hiddenimports=[],
+    hookspath=None,
+    runtime_hooks=None,
+    excludes=None,
+    cipher=block_cipher)
 
 pyz = PYZ(
-                a.pure,
-                a.zipped_data,
-                cipher=block_cipher)
+    a.pure,
+    a.zipped_data,
+    cipher=block_cipher)
 
 exe = EXE(pyz,
-          a.scripts,
-          a.binaries,
-          a.zipfiles,
-          a.datas,
-          name='main',
-          strip=False,
-          console=True,
-          debug=True,
-          icon='food.ico')
+    a.scripts,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    name='main',
+    strip=False,
+    console=True,
+    debug=True,
+    icon='food.ico')
 
 app = BUNDLE(exe,
-         name='main.app',
-         icon=None,
-         bundle_identifier=None,
-         info_plist={
-            'NSHighResolutionCapable': 'True'})
+    name='main.app',
+    icon=None,
+    bundle_identifier=None,
+    info_plist={
+        'NSHighResolutionCapable': 'True'
+    })
 
 coll = COLLECT(exe,
-               a.binaries,
-               a.zipfiles,
-               a.datas,
-               strip=False,
-               upx=False,
-               name='lib')
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    strip=False,
+    upx=False,
+    name='lib')
