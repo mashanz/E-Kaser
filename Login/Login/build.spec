@@ -19,9 +19,9 @@ print("MY DLL"+pyqt_dlls)
 added_files = [
          (os.path.join(qml_dir, 'QtQuick'), 'qml/QtQuick'),
          (os.path.join(qml_dir, 'QtQuick.2'), 'qml/QtQuick.2'),
-         ( 'C:\\Users\\hanjara\\Desktop\\ksr\\*.png', '.' ),
-         ( 'C:\\Users\\hanjara\\Desktop\\ksr\\*.qml', '.' ),
-         ( 'C:\\Users\\hanjara\\Desktop\\ksr\\*.qrc', '.' )
+         ( '*.png', '.' ),
+         ( '*.qml', '.' ),
+         ( '*.qrc', '.' )
          ]
 
 a = Analysis(['login.py'],
