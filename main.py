@@ -7,7 +7,6 @@ from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtGui import QGuiApplication
 import PyQt5.QtQuick
 import qrc
-
 def resource_path(ralative_path):
 	try:
 		base_path = sys._MEIPASS
@@ -15,11 +14,10 @@ def resource_path(ralative_path):
 		base_path = os.path.abspath(".")
 	return os.path.join(base_path, ralative_path)
 
-if __name__ == "__main__":
+def main():
     qrc.qInitResources()
     QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
     app = QGuiApplication(sys.argv)
-
     engine = QQmlApplicationEngine()
     engine.load(QUrl().fromLocalFile(resource_path("main.qml")))
     if engine.rootObjects() is None:
@@ -27,4 +25,6 @@ if __name__ == "__main__":
     qrc.qCleanupResources()
     sys.exit(app.exec_())
 
+if __name__ == "__main__":
+    main()
 
