@@ -44,14 +44,14 @@ exe = EXE(pyz,
           a.binaries,
           a.zipfiles,
           a.datas,
-          name='main',
+          name='login',
           strip=False,
           console=True,
           debug=True,
           icon='food.ico')
 
 app = BUNDLE(exe,
-         name='main.app',
+         name='login.app',
          icon=None,
          bundle_identifier=None,
          info_plist={
