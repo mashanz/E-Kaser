@@ -156,7 +156,7 @@ Page {
         frameVisible: false
         sortIndicatorVisible: true
         Layout.minimumWidth: 400
-        Layout.minimumHeight: 240
+        Layout.minimumHeight: 300
         Layout.preferredWidth: 600
         Layout.preferredHeight: 400
 
@@ -215,6 +215,76 @@ Page {
             }
         }
 
+        itemDelegate: Item {
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: appStyle.text
+                elide: styleData.elideMode
+                text: styleData.value
+            }
+            height: 40
+        }
+
+        rowDelegate: Rectangle {
+            property int sizeOpen: 50
+			property int sizeClosed: 50
+
+			id: rowDelegate
+			color: styleData.alternate ? appStyle.bgCard : appStyle.background
+			height: getSize()
+
+			function getSize() {
+				if(!tableView.selection.contains(styleData.row)) {
+					doClose.start();
+					return sizeClosed;
+				}
+				return sizeOpen;
+			}
+
+			MouseArea {
+				height: sizeClosed
+				propagateComposedEvents: true
+				preventStealing: true
+				acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+				onClicked: {
+					if(rowDelegate.sizeOpen == rowDelegate.height) {
+						tableView.selection.deselect(styleData.row);
+						doClose.start()
+					} else {
+						tableView.selection.clear();
+						tableView.selection.select(styleData.row);
+						doOpen.start();
+					}
+				}
+			}
+
+			ParallelAnimation {
+				id: doOpen
+				running: false
+				NumberAnimation {
+				    target: rowDelegate;
+				    easing.type: Easing.OutSine;
+				    property: "height";
+				    to: sizeOpen;
+				    duration: 100
+				}
+			}
+
+			ParallelAnimation {
+				id: doClose
+				running: false
+				NumberAnimation {
+				    target: rowDelegate;
+				    easing.type: Easing.OutSine;
+				    property: "height";
+				    to: sizeClosed;
+				    duration: 100;
+				}
+			}
+		}
+
         model: pesanan
 
         ListModel {
@@ -245,125 +315,101 @@ Page {
                 available: "100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "146"
+                menu: "Bubur Ayam"
+                available: "10.000"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "127"
+                menu: "Nasi Goreng"
+                available: "5.000"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "149"
+                menu: "Es Teh"
+                available: "7.000"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "155"
+                menu: "Manisan"
+                available: "6.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "175"
+                menu: "Ceker Ayam"
+                available: "8.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "195"
+                menu: "Ati Ayam"
+                available: "9.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "245"
+                menu: "Gorengan"
+                available: "10.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "345"
+                menu: "Timbel Ayam"
+                available: "14.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "445"
+                menu: "Nasi Ayam Bakar"
+                available: "16.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "545"
+                menu: "Kopi Ayam"
+                available: "8.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "645"
+                menu: "Kue Ayam Bakar"
+                available: "20.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "745"
+                menu: "Bubur Ayam Bakar"
+                available: "22.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "845"
+                menu: "Bakso Ayam"
+                available: "45.100"
             }
             ListElement {
-                code: "145"
-                menu: "Ayam Bakar Tidak Mau di Madu"
-                available: "100"
+                code: "945"
+                menu: "bakso Ayam Bakar"
+                available: "66.100"
             }
             ListElement {
-                code: "111"
-                menu: "Ayam Bakar Madu"
-                available: "100"
+                code: "611"
+                menu: "Mi Ayam Bakar Madu"
+                available: "99.100"
             }
             ListElement {
-                code: "223"
-                menu: "Ayam Bakar Jengkol"
-                available: "100"
+                code: "523"
+                menu: "Mi Ayam Bakar Jengkol"
+                available: "12.100"
             }
             ListElement {
-                code: "341"
-                menu: "Ayam Rebus"
-                available: "100"
+                code: "841"
+                menu: "Mi Ayam Rebus"
+                available: "121.100"
             }
             ListElement {
-                code: "131"
-                menu: "Ayam Darad Merapi"
-                available: "100"
+                code: "231"
+                menu: "Kerupuk Ayam Darad Merapi"
+                available: "255.000"
             }
             ListElement {
-                code: "123"
-                menu: "Ayam Tumis"
-                available: "100"
+                code: "423"
+                menu: "Rendang Ayam Tumis"
+                available: "781.000"
             }
         }
-
-        // model : [
-        //     {
-        //         qty: "2",
-        //         nama: "Ayam Bakar",
-        //         catatan: "Jangan dibakar",
-        //         harga1: "10.000",
-        //         total: "20.000"
-        //     },
-        //     {
-        //         qty: "2",
-        //         nama: "Ayam Rebus",
-        //         catatan: "Jangan dibakar",
-        //         harga1: "10.000",
-        //         total: "20.000"
-        //     },
-        //     {
-        //         qty: "2",
-        //         nama: "Ayam Goreng",
-        //         catatan: "Jangan dibakar",
-        //         harga1: "10.000",
-        //         total: "20.000"
-        //     }
-        // ]
     }
 
     TableView {
@@ -460,6 +506,65 @@ Page {
                 }
             }
         }
+
+        rowDelegate: Rectangle {
+            property int sizeOpen: 50
+			property int sizeClosed: 50
+
+			id: rowDelegate
+			color: styleData.alternate ? appStyle.bgCard : appStyle.background
+			height: getSize()
+
+			function getSize() {
+				if(!tableView2.selection.contains(styleData.row)) {
+					doClose.start();
+					return sizeClosed;
+				}
+				return sizeOpen;
+			}
+
+			MouseArea {
+				height: sizeClosed
+				propagateComposedEvents: true
+				preventStealing: true
+				acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+				onClicked: {
+					if(rowDelegate.sizeOpen == rowDelegate.height) {
+						tableView2.selection.deselect(styleData.row);
+						doClose.start()
+					} else {
+						tableView2.selection.clear();
+						tableView2.selection.select(styleData.row);
+						doOpen.start();
+					}
+				}
+			}
+
+			ParallelAnimation {
+				id: doOpen
+				running: false
+				NumberAnimation {
+				    target: rowDelegate;
+				    easing.type: Easing.OutSine;
+				    property: "height";
+				    to: sizeOpen;
+				    duration: 100
+				}
+			}
+
+			ParallelAnimation {
+				id: doClose
+				running: false
+				NumberAnimation {
+				    target: rowDelegate;
+				    easing.type: Easing.OutSine;
+				    property: "height";
+				    to: sizeClosed;
+				    duration: 100;
+				}
+			}
+		}
 
         model: menunya
 

@@ -100,14 +100,11 @@ Page {
             headerDelegate: Rectangle {
                 height: textItem2.implicitHeight * 1.2
                 color: appStyle.header1
-                //width: textItem.implicitWidth
                 Text {
                     id: textItem2
                     anchors.fill: parent
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    // anchors.leftMargin: 100
-                    //anchors.rightMargin: 100
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
@@ -123,6 +120,16 @@ Page {
                     width: 1
                     color: appStyle.header1
                 }
+            }
+        }
+
+        itemDelegate: Item {
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: styleData.textColor
+                elide: styleData.elideMode
+                text: styleData.value
             }
         }
 
@@ -347,14 +354,11 @@ Page {
             headerDelegate: Rectangle {
                 height: textItem3.implicitHeight * 1.2
                 color: appStyle.header1
-                //width: textItem.implicitWidth
                 Text {
                     id: textItem3
                     anchors.fill: parent
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    // anchors.leftMargin: 100
-                    //anchors.rightMargin: 100
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
@@ -372,6 +376,76 @@ Page {
                 }
             }
         }
+
+        itemDelegate: Item {
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: appStyle.text
+                elide: styleData.elideMode
+                text: styleData.value
+            }
+            height: 40
+        }
+
+        rowDelegate: Rectangle {
+            property int sizeOpen: 50
+			property int sizeClosed: 30
+
+			id: rowDelegate
+			color: styleData.alternate ? appStyle.bgCard : appStyle.background
+			height: getSize()
+
+			function getSize() {
+				if(!tableView4.selection.contains(styleData.row)) {
+					doClose.start();
+					return sizeClosed;
+				}
+				return sizeOpen;
+			}
+
+			MouseArea {
+				height: sizeClosed
+				propagateComposedEvents: true
+				preventStealing: true
+				acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+				onClicked: {
+					if(rowDelegate.sizeOpen == rowDelegate.height) {
+						tableView4.selection.deselect(styleData.row);
+						doClose.start()
+					} else {
+						tableView4.selection.clear();
+						tableView4.selection.select(styleData.row);
+						doOpen.start();
+					}
+				}
+			}
+
+			ParallelAnimation {
+				id: doOpen
+				running: false
+				NumberAnimation {
+				    target: rowDelegate;
+				    easing.type: Easing.OutSine;
+				    property: "height";
+				    to: sizeOpen;
+				    duration: 100
+				}
+			}
+
+			ParallelAnimation {
+				id: doClose
+				running: false
+				NumberAnimation {
+				    target: rowDelegate;
+				    easing.type: Easing.OutSine;
+				    property: "height";
+				    to: sizeClosed;
+				    duration: 100;
+				}
+			}
+		}
 
         model: pembayaran
 
@@ -399,132 +473,6 @@ Page {
             }
         }
     }
-
-    //    TableView {
-    //        id: tableView
-    //        anchors.top: rectangle.bottom
-    //        anchors.topMargin: 10
-    //        currentRow: 0
-
-    //        frameVisible: false
-    //           sortIndicatorVisible: true
-
-    //           Layout.minimumWidth: 400
-    //           Layout.minimumHeight: 240
-    //           Layout.preferredWidth: 600
-    //           Layout.preferredHeight: 400
-
-    //           TableViewColumn {
-    //               id: titleColumn
-    //               title: "Title"
-    //               role: "title"
-    //               movable: false
-    //               resizable: false
-    //               width: tableView.viewport.width - authorColumn.width
-    //           }
-
-    //           TableViewColumn {
-    //               id: authorColumn
-    //               title: "Author"
-    //               role: "author"
-    //               movable: false
-    //               resizable: false
-    //               width: tableView.viewport.width / 3
-    //           }
-
-    ////           model: SortFilterProxyModel {
-    ////               id: proxyModel
-    ////               source: sourceModel.count > 0 ? sourceModel : null
-
-    ////               sortOrder: tableView.sortIndicatorOrder
-    ////               sortCaseSensitivity: Qt.CaseInsensitive
-    ////               sortRole: sourceModel.count > 0 ? tableView.getColumn(tableView.sortIndicatorColumn).role : ""
-
-    ////               filterString: "*" + searchBox.text + "*"
-    ////               filterSyntax: SortFilterProxyModel.Wildcard
-    ////               filterCaseSensitivity: Qt.CaseInsensitive
-    ////           }
-
-    //           ListModel {
-    //               id: sourceModel
-    //               ListElement {
-    //                   title: "Moby-Dick"
-    //                   author: "Herman Melville"
-    //               }
-    //               ListElement {
-    //                   title: "The Adventures of Tom Sawyer"
-    //                   author: "Mark Twain"
-    //               }
-    //               ListElement {
-    //                   title: "Cat’s Cradle"
-    //                   author: "Kurt Vonnegut"
-    //               }
-    //               ListElement {
-    //                   title: "Fahrenheit 451"
-    //                   author: "Ray Bradbury"
-    //               }
-    //               ListElement {
-    //                   title: "It"
-    //                   author: "Stephen King"
-    //               }
-    //               ListElement {
-    //                   title: "On the Road"
-    //                   author: "Jack Kerouac"
-    //               }
-    //               ListElement {
-    //                   title: "Of Mice and Men"
-    //                   author: "John Steinbeck"
-    //               }
-    //               ListElement {
-    //                   title: "Do Androids Dream of Electric Sheep?"
-    //                   author: "Philip K. Dick"
-    //               }
-    //               ListElement {
-    //                   title: "Uncle Tom’s Cabin"
-    //                   author: "Harriet Beecher Stowe"
-    //               }
-    //               ListElement {
-    //                   title: "The Call of the Wild"
-    //                   author: "Jack London"
-    //               }
-    //               ListElement {
-    //                   title: "The Old Man and the Sea"
-    //                   author: "Ernest Hemingway"
-    //               }
-    //               ListElement {
-    //                   title: "A Streetcar Named Desire"
-    //                   author: "Tennessee Williams"
-    //               }
-    //               ListElement {
-    //                   title: "Catch-22"
-    //                   author: "Joseph Heller"
-    //               }
-    //               ListElement {
-    //                   title: "One Flew Over the Cuckoo’s Nest"
-    //                   author: "Ken Kesey"
-    //               }
-    //               ListElement {
-    //                   title: "The Murders in the Rue Morgue"
-    //                   author: "Edgar Allan Poe"
-    //               }
-    //               ListElement {
-    //                   title: "Breakfast at Tiffany’s"
-    //                   author: "Truman Capote"
-    //               }
-    //               ListElement {
-    //                   title: "Death of a Salesman"
-    //                   author: "Arthur Miller"
-    //               }
-    //               ListElement {
-    //                   title: "Post Office"
-    //                   author: "Charles Bukowski"
-    //               }
-    //               ListElement {
-    //                   title: "Herbert West—Reanimator"
-    //                   author: "H. P. Lovecraft"
-    //               }
-    //           }
-    //       }
 }
 
 /*##^## Designer {

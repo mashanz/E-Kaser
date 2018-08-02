@@ -24,9 +24,12 @@ def main():
     QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
-    engine.load(QUrl().fromLocalFile(resource_path("customer.qml")))
+    # engine.load(QUrl().fromLocalFile(resource_path("customer.qml")))
     engine.load(QUrl().fromLocalFile(resource_path("main.qml")))
-    engine.load(QUrl().fromLocalFile(resource_path("login.qml")))
+    # engine.load(QUrl().fromLocalFile(resource_path("login.qml")))
+    # engine.load(QUrl().fromLocalFile(resource_path("SplitBill.qml")))
+    # engine.load(QUrl().fromLocalFile(resource_path("SplitPayment.qml")))
+
     if engine.rootObjects() is None:
         exit(1)
     qrc.qCleanupResources()

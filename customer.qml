@@ -108,7 +108,7 @@ Window {
         anchors.right: parent.right
         anchors.rightMargin: 10
         anchors.top: labelCustomer1.bottom
-        anchors.topMargin: 9
+        anchors.topMargin: 10
         currentRow: 0
         frameVisible: false
         sortIndicatorVisible: true
@@ -137,7 +137,7 @@ Window {
 
         TableViewColumn {
             id: catatan
-            title: "Catat"
+            title: "Catatan"
             role: "catatan"
             movable: false
             resizable: false
@@ -162,24 +162,15 @@ Window {
             width: tableView.viewport.width * 2 / 20
         }
 
-        itemDelegate: Text {
-            color:  styleData.row > 2 ? "red" : "black"
-            text: styleData.value
-            anchors.verticalCenter: parent.verticalCenter
-        }
-
         style: TableViewStyle {
             headerDelegate: Rectangle {
                 height: textItem.implicitHeight * 1.2
                 color: appStyle.header1
-                //width: textItem.implicitWidth
                 Text {
                     id: textItem
                     anchors.fill: parent
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    // anchors.leftMargin: 100
-                    //anchors.rightMargin: 100
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
@@ -198,8 +189,77 @@ Window {
             }
         }
 
-        model: pesanan
+        itemDelegate: Item {
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                //color: styleData.textColor
+                elide: styleData.elideMode
+                text: styleData.value
+                color: styleData.alternate ? appStyle.header1 : appStyle.text
+            }
+        }
 
+        rowDelegate: Rectangle {
+            property int sizeOpen: 50
+			property int sizeClosed: 30
+
+			id: rowDelegate
+			color: styleData.alternate ? appStyle.bgCard : appStyle.background
+			height: getSize()
+
+			function getSize() {
+				if(!tableView.selection.contains(styleData.row)) {
+					doClose.start();
+					return sizeClosed;
+				}
+				return sizeOpen;
+			}
+
+			MouseArea {
+				height: sizeClosed
+				propagateComposedEvents: true
+				preventStealing: true
+				acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+				onClicked: {
+					if(rowDelegate.sizeOpen == rowDelegate.height) {
+						tableView.selection.deselect(styleData.row);
+						doClose.start()
+					} else {
+						tableView.selection.clear();
+						tableView.selection.select(styleData.row);
+						doOpen.start();
+					}
+				}
+			}
+
+			ParallelAnimation {
+				id: doOpen
+				running: false
+				NumberAnimation {
+				    target: rowDelegate;
+				    easing.type: Easing.OutSine;
+				    property: "height";
+				    to: sizeOpen;
+				    duration: 100
+				}
+			}
+
+			ParallelAnimation {
+				id: doClose
+				running: false
+				NumberAnimation {
+				    target: rowDelegate;
+				    easing.type: Easing.OutSine;
+				    property: "height";
+				    to: sizeClosed;
+				    duration: 100;
+				}
+			}
+		}
+
+        model: pesanan
         ListModel {
             id: pesanan
             ListElement {
