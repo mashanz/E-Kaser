@@ -34,7 +34,7 @@ Page {
 
     TableView {
         id: tableView3
-        width: 771
+        width: 893
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.left: parent.left
@@ -57,7 +57,7 @@ Page {
             role: "qty"
             movable: false
             resizable: false
-            width: tableView3.viewport.width / 5 //- authorColumn.width
+            width: tableView3.viewport.width * 1 / 20
         }
 
         TableViewColumn {
@@ -66,7 +66,7 @@ Page {
             role: "menu"
             movable: false
             resizable: false
-            width: tableView3.viewport.width / 5
+            width: tableView3.viewport.width * 4 / 20
         }
 
         TableViewColumn {
@@ -75,7 +75,7 @@ Page {
             role: "catatan"
             movable: false
             resizable: false
-            width: tableView3.viewport.width / 5
+            width: tableView3.viewport.width * 11 / 20
         }
 
         TableViewColumn {
@@ -84,7 +84,7 @@ Page {
             role: "satuan"
             movable: false
             resizable: false
-            width: tableView3.viewport.width / 5
+            width: tableView3.viewport.width * 2 / 20
         }
 
         TableViewColumn {
@@ -93,7 +93,7 @@ Page {
             role: "total"
             movable: false
             resizable: false
-            width: tableView3.viewport.width / 5
+            width: tableView3.viewport.width * 2 / 20
         }
 
         style: TableViewStyle {
@@ -123,6 +123,33 @@ Page {
                     width: 1
                     color: appStyle.header1
                 }
+            }
+        }
+
+        model: pesanan
+
+        ListModel {
+            id: pesanan
+            ListElement {
+                qty: "1"
+                menu: "Ayam Bakar Madu"
+                catatan: "Ayamnya jangan dibakar, engga pake madu"
+                satuan: "100.000"
+                total: "100.000"
+            }
+            ListElement {
+                qty: "2"
+                menu: "Esteh Manis"
+                catatan: "yang satu tehnya ga pake es sama ga manis"
+                satuan: "100.000"
+                total: "200.000"
+            }
+            ListElement {
+                qty: "5"
+                menu: "Bubur ayam"
+                catatan: "1 ga pake bubur, 1 ga pake ayam, 2 ga pake bubur ayam, 1 lengkap"
+                satuan: "10.000"
+                total: "50.000"
             }
         }
     }
@@ -295,7 +322,7 @@ Page {
             role: "no"
             movable: false
             resizable: false
-            width: tableView4.viewport.width / 3 //- authorColumn.width
+            width: tableView4.viewport.width * 1 / 9
         }
 
         TableViewColumn {
@@ -304,16 +331,16 @@ Page {
             role: "metode"
             movable: false
             resizable: false
-            width: tableView4.viewport.width / 3
+            width: tableView4.viewport.width * 5 / 9
         }
 
         TableViewColumn {
             id: jumlah
             title: "Jumlah bayar"
-            role: "jml_bayar"
+            role: "jumlah"
             movable: false
             resizable: false
-            width: tableView4.viewport.width / 3
+            width: tableView4.viewport.width * 3 / 9
         }
 
         style: TableViewStyle {
@@ -343,6 +370,32 @@ Page {
                     width: 1
                     color: appStyle.header1
                 }
+            }
+        }
+
+        model: pembayaran
+
+        ListModel {
+            id: pembayaran
+            ListElement {
+                no: "1"
+                metode: "Voucher GoPay"
+                jumlah: "5.000"
+            }
+            ListElement {
+                no: "2"
+                metode: "Kredit"
+                jumlah: "1.000.000"
+            }
+            ListElement {
+                no: "3"
+                metode: "Cash"
+                jumlah: "500"
+            }
+            ListElement {
+                no: "4"
+                metode: "Promo"
+                jumlah: "100"
             }
         }
     }

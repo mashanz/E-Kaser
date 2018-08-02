@@ -123,7 +123,7 @@ Window {
             role: "qty"
             movable: false
             resizable: false
-            width: tableView.viewport.width * 1 / 10
+            width: tableView.viewport.width * 1 / 20
         }
 
         TableViewColumn {
@@ -132,25 +132,25 @@ Window {
             role: "menu"
             movable: false
             resizable: false
-            width: tableView.viewport.width * 3 / 10
+            width: tableView.viewport.width * 4 / 20
         }
 
         TableViewColumn {
-            id: catat
+            id: catatan
             title: "Catat"
-            role: "catat"
+            role: "catatan"
             movable: false
             resizable: false
-            width: tableView.viewport.width / 5
+            width: tableView.viewport.width * 11 / 20
         }
 
         TableViewColumn {
-            id: price1
+            id: satuan
             title: "Harga Satuan"
             role: "price1"
             movable: false
             resizable: false
-            width: tableView.viewport.width / 5
+            width: tableView.viewport.width * 2 / 20
         }
 
         TableViewColumn {
@@ -159,7 +159,7 @@ Window {
             role: "subtotal"
             movable: false
             resizable: false
-            width: tableView.viewport.width / 5
+            width: tableView.viewport.width * 2 / 20
         }
 
         itemDelegate: Text {
@@ -195,6 +195,33 @@ Window {
                     width: 1
                     color: appStyle.header1
                 }
+            }
+        }
+
+        model: pesanan
+
+        ListModel {
+            id: pesanan
+            ListElement {
+                qty: "1"
+                menu: "Ayam Bakar Madu"
+                catatan: "Ayamnya jangan dibakar, engga pake madu"
+                price1: "100.000"
+                subtotal: "100.000"
+            }
+            ListElement {
+                qty: "2"
+                menu: "Esteh Manis"
+                catatan: "yang satu tehnya ga pake es sama ga manis"
+                price1: "100.000"
+                subtotal: "200.000"
+            }
+            ListElement {
+                qty: "5"
+                menu: "Bubur ayam"
+                catatan: "1 ga pake bubur, 1 ga pake ayam, 2 ga pake bubur ayam, 1 lengkap"
+                price1: "10.000"
+                subtotal: "50.000"
             }
         }
     }

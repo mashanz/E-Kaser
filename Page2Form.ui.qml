@@ -166,7 +166,7 @@ Page {
             role: "code"
             movable: false
             resizable: false
-            width: tableView.viewport.width / 3 //- authorColumn.width
+            width: tableView.viewport.width * 1 / 9
         }
 
         TableViewColumn {
@@ -175,7 +175,7 @@ Page {
             role: "menu"
             movable: false
             resizable: false
-            width: tableView.viewport.width / 3
+            width: (tableView.viewport.width * 7 / 9) - 20
         }
 
         TableViewColumn {
@@ -184,7 +184,7 @@ Page {
             role: "available"
             movable: false
             resizable: false
-            width: tableView.viewport.width / 3
+            width: tableView.viewport.width * 1 / 9
         }
 
         style: TableViewStyle {
@@ -197,8 +197,6 @@ Page {
                     anchors.fill: parent
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
-                    // anchors.leftMargin: 100
-                    //anchors.rightMargin: 100
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: styleData.value
                     elide: Text.ElideRight
@@ -214,6 +212,132 @@ Page {
                     width: 1
                     color: appStyle.header1
                 }
+            }
+        }
+
+        model: pesanan
+
+        ListModel {
+            id: pesanan
+            ListElement {
+                code: "111"
+                menu: "Ayam Bakar Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "223"
+                menu: "Ayam Bakar Jengkol"
+                available: "100"
+            }
+            ListElement {
+                code: "341"
+                menu: "Ayam Rebus"
+                available: "100"
+            }
+            ListElement {
+                code: "131"
+                menu: "Ayam Darad Merapi"
+                available: "100"
+            }
+            ListElement {
+                code: "123"
+                menu: "Ayam Tumis"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "145"
+                menu: "Ayam Bakar Tidak Mau di Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "111"
+                menu: "Ayam Bakar Madu"
+                available: "100"
+            }
+            ListElement {
+                code: "223"
+                menu: "Ayam Bakar Jengkol"
+                available: "100"
+            }
+            ListElement {
+                code: "341"
+                menu: "Ayam Rebus"
+                available: "100"
+            }
+            ListElement {
+                code: "131"
+                menu: "Ayam Darad Merapi"
+                available: "100"
+            }
+            ListElement {
+                code: "123"
+                menu: "Ayam Tumis"
+                available: "100"
             }
         }
 
@@ -268,7 +392,7 @@ Page {
             role: "qty"
             movable: false
             resizable: false
-            width: tableView2.viewport.width / 5 //- authorColumn.width
+            width: tableView2.viewport.width * 1 / 20
         }
 
         TableViewColumn {
@@ -277,7 +401,7 @@ Page {
             role: "menu"
             movable: false
             resizable: false
-            width: tableView2.viewport.width / 5
+            width: tableView2.viewport.width * 4 / 20
         }
 
         TableViewColumn {
@@ -286,7 +410,7 @@ Page {
             role: "catatan"
             movable: false
             resizable: false
-            width: tableView2.viewport.width / 5
+            width: tableView2.viewport.width * 7 / 20
         }
 
         TableViewColumn {
@@ -295,7 +419,7 @@ Page {
             role: "satuan"
             movable: false
             resizable: false
-            width: tableView2.viewport.width / 5
+            width: tableView2.viewport.width * 4 / 20
         }
 
         TableViewColumn {
@@ -304,7 +428,7 @@ Page {
             role: "subtotal"
             movable: false
             resizable: false
-            width: tableView2.viewport.width / 5
+            width: tableView2.viewport.width * 4 / 20
         }
 
         style: TableViewStyle {
@@ -334,6 +458,33 @@ Page {
                     width: 1
                     color: appStyle.header1
                 }
+            }
+        }
+
+        model: menunya
+
+        ListModel {
+            id: menunya
+            ListElement {
+                qty: "1"
+                menu: "Ayam Bakar Madu"
+                catatan: "Ayamnya jangan dibakar, engga pake madu"
+                satuan: "100.000"
+                subtotal: "100.000"
+            }
+            ListElement {
+                qty: "2"
+                menu: "Esteh Manis"
+                catatan: "yang satu tehnya ga pake es sama ga manis"
+                satuan: "100.000"
+                subtotal: "200.000"
+            }
+            ListElement {
+                qty: "5"
+                menu: "Bubur ayam"
+                catatan: "1 ga pake bubur, 1 ga pake ayam, 2 ga pake bubur ayam, 1 lengkap"
+                satuan: "10.000"
+                subtotal: "50.000"
             }
         }
     }
