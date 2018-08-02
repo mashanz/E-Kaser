@@ -1,7 +1,7 @@
 import QtQuick 2.9
 import QtQuick 2.2
 import QtQuick.Window 2.2
-import QtQuick.Controls 2.2
+//import QtQuick.Controls 2.2
 
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.2
@@ -49,9 +49,13 @@ Window {
             }
 
             Button {
-                signal messageRequired
+                // signal messageRequired
                 objectName: "myButton"
-                // onClicked: messageRequired()
+                onClicked: {
+                    var component = Qt.createComponent("main.qml")
+                    var window = component.createObject(this)
+                    window.show()
+                }
                 id: button
                 width: 400
                 height: 40

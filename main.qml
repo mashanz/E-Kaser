@@ -4,6 +4,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.4
 
 ApplicationWindow {
+    id: root
     visible: true
     width: 1280
     height: 720

@@ -9,6 +9,8 @@
         <file>customer.qml</file>
         <file>SplitBill.qml</file>
         <file>SplitPayment.qml</file>
+        <file>run.qml</file>
+        <file>Child.qml</file>
         <file>logo.png</file>
         <file>food.ico</file>
         <file>qtquickcontrols2.conf</file>
