@@ -48,8 +48,8 @@ exe = EXE(pyz,
     a.datas,
     name='main',
     strip=False,
-    console=True,
-    debug=True,
+    console=False,
+    debug=False,
     icon='food.ico')
 
 app = BUNDLE(exe,
