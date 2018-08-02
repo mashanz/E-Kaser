@@ -481,7 +481,7 @@ Page {
             headerDelegate: Rectangle {
                 height: textItem2.implicitHeight * 1.2
                 color: appStyle.header1
-                //width: textItem.implicitWidth
+                width: textItem2.implicitWidth
                 Text {
                     id: textItem2
                     anchors.fill: parent

@@ -55,7 +55,7 @@ Window {
             }
 
             Button {
-                // signal messageRequired
+                signal messageRequired
                 objectName: "myButton"
                 onClicked: {
                     var component = Qt.createComponent("main.qml")

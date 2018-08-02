@@ -1,25 +1,78 @@
 import QtQuick 2.9
-import QtQuick.Window 2.2
+import QtQuick.Window 2.0
 import QtQuick.Controls 2.2
-
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.2
-
 import QtQuick.Controls.Styles 1.4
 
-Window {
-    id: window
+ApplicationWindow {
+    id: root
     visible: true
-    width: 720
-    height: 480
-    title: qsTr("Split Bill")
+    width: 1280
+    height: 720
+    title: qsTr("Khaseer")
 
     property variant appStyle: Style {
         id: style
     }
-}
 
-/*##^## Designer {
-    D{i:31;anchors_x:215;anchors_y:232}D{i:32;anchors_x:0;anchors_y:0}D{i:29;anchors_x:158;anchors_y:9}
+    SwipeView {
+        id: swipeView
+        anchors.fill: parent
+        currentIndex: tabBar.currentIndex
+
+        PageBill {
+
+        }
+
+        PagePayment {
+
+        }
+
+    }
+
+    footer: TabBar {
+        id: tabBar
+        currentIndex: swipeView.currentIndex
+        height: 40
+        background: Rectangle {
+                color: appStyle.background
+        }
+
+        TabButton {
+            Text {
+                text: qsTr("Split Bill")
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.bold: true
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: tabBar.currentIndex == 0 ? appStyle.button : appStyle.background
+                font.pixelSize: 18
+            }
+            background: Rectangle {
+                color: tabBar.currentIndex == 0 ? appStyle.background : appStyle.header1
+                radius: 0
+            }
+            anchors.bottom: parent.bottom
+            height: 40
+        }
+
+        TabButton {
+            Text {
+                text: qsTr("Split Payment")
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.bold: true
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: tabBar.currentIndex == 1 ? appStyle.button : appStyle.background
+                font.pixelSize: 18
+            }
+            background: Rectangle {
+                color: tabBar.currentIndex == 1 ? appStyle.background : appStyle.header1
+                radius: 0
+            }
+            anchors.bottom: parent.bottom
+            height: 40
+        }
+    }
 }
- ##^##*/

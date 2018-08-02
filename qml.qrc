@@ -9,6 +9,8 @@
         <file>customer.qml</file>
         <file>SplitBill.qml</file>
         <file>SplitPayment.qml</file>
+        <file>PageBill.ui.qml</file>
+        <file>PagePayment.ui.qml</file>
         <file>run.qml</file>
         <file>Child.qml</file>
         <file>logo.png</file>

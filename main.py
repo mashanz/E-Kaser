@@ -26,7 +26,7 @@ def resource_path(ralative_path):
 
 
 def main():
-    app = QApplication(sys.argv)
+    app = QGuiApplication(sys.argv)
     # qrc.qInitResources()
     engine = QQmlApplicationEngine()
     # engine.load(QUrl().fromLocalFile(resource_path("customer.qml")))
@@ -38,21 +38,21 @@ def main():
     if engine.rootObjects() is None:
         exit(1)
 
-    # win = engine.rootObjects()[0]
-    # button = win.findChild(QObject, "myButton")
-    # # button.messageRequired.connect(Login(app))
-    # button.clicked.connect(partial(Login, app))
-    # qrc.qCleanupResources()
+    win = engine.rootObjects()[0]
+    button = win.findChild(QObject, "myButton")
+    button.messageRequired.connect(partial(Login, app))
+    button.clicked.connect(partial(Login, app))
+    qrc.qCleanupResources()
     # win.show()
     sys.exit(app.exec_())
 
 
 def Login(app):
-    print("YAH")
-    window = QtWidgets.QMainWindow()
-    ui = Ui_OtherWindow()
-    ui.setupUi(window)
-    window.show()
+    print("Login Succes")
+    # window = QtWidgets.QMainWindow()
+    # ui = Ui_OtherWindow()
+    # ui.setupUi(window)
+    # window.show()
 
 
 if __name__ == "__main__":

@@ -4,6 +4,9 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.4
 
+import QtQuick 2.2
+import QtQuick.Window 2.2
+
 Page {
     id: page
     width: 1280
@@ -54,16 +57,16 @@ Page {
         TableViewColumn {
             id: qty1
             title: "Qty"
-            role: "qty"
+            role: "qty1"
             movable: false
             resizable: false
             width: tableView3.viewport.width * 1 / 20
         }
 
         TableViewColumn {
-            id: nama1
+            id: menu1
             title: "Menu"
-            role: "menu"
+            role: "menu1"
             movable: false
             resizable: false
             width: tableView3.viewport.width * 4 / 20
@@ -72,16 +75,16 @@ Page {
         TableViewColumn {
             id: catatan1
             title: "Catatan"
-            role: "catatan"
+            role: "catatan1"
             movable: false
             resizable: false
             width: tableView3.viewport.width * 11 / 20
         }
 
         TableViewColumn {
-            id: harga11
+            id: harga1
             title: "Satuan"
-            role: "satuan"
+            role: "harga1"
             movable: false
             resizable: false
             width: tableView3.viewport.width * 2 / 20
@@ -90,7 +93,7 @@ Page {
         TableViewColumn {
             id: total1
             title: "Total"
-            role: "total"
+            role: "total1"
             movable: false
             resizable: false
             width: tableView3.viewport.width * 2 / 20
@@ -133,30 +136,30 @@ Page {
             }
         }
 
-        model: pesanan
+        model: pesananya
 
         ListModel {
-            id: pesanan
+            id: pesananya
             ListElement {
-                qty: "1"
-                menu: "Ayam Bakar Madu"
-                catatan: "Ayamnya jangan dibakar, engga pake madu"
-                satuan: "100.000"
-                total: "100.000"
+                qty1: "1"
+                menu1: "Ayam Bakar Madu"
+                catatan1: "Ayamnya jangan dibakar, engga pake madu"
+                harga1: "100.000"
+                total1: "100.000"
             }
             ListElement {
-                qty: "2"
-                menu: "Esteh Manis"
-                catatan: "yang satu tehnya ga pake es sama ga manis"
-                satuan: "100.000"
-                total: "200.000"
+                qty1: "2"
+                menu1: "Esteh Manis"
+                catatan1: "yang satu tehnya ga pake es sama ga manis"
+                harga1: "100.000"
+                total1: "200.000"
             }
             ListElement {
-                qty: "5"
-                menu: "Bubur ayam"
-                catatan: "1 ga pake bubur, 1 ga pake ayam, 2 ga pake bubur ayam, 1 lengkap"
-                satuan: "10.000"
-                total: "50.000"
+                qty1: "5"
+                menu1: "Bubur ayam"
+                catatan1: "1 ga pake bubur, 1 ga pake ayam, 2 ga pake bubur ayam, 1 lengkap"
+                harga1: "10.000"
+                total1: "50.000"
             }
         }
     }
@@ -309,7 +312,7 @@ Page {
         anchors.leftMargin: 0
         anchors.top: rectangle1.bottom
         anchors.topMargin: 10
-        anchors.bottom: parent.bottom
+        anchors.bottom: rectangle3.top
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
@@ -388,65 +391,65 @@ Page {
             height: 40
         }
 
-        rowDelegate: Rectangle {
-            property int sizeOpen: 50
-			property int sizeClosed: 30
 
-			id: rowDelegate
-			color: styleData.alternate ? appStyle.bgCard : appStyle.background
-			height: getSize()
+        //        rowDelegate: Rectangle {
+        //            property int sizeOpen: 50
+        //			property int sizeClosed: 30
 
-			function getSize() {
-				if(!tableView4.selection.contains(styleData.row)) {
-					doClose.start();
-					return sizeClosed;
-				}
-				return sizeOpen;
-			}
+        //			id: rowDelegate
+        //			color: styleData.alternate ? appStyle.bgCard : appStyle.background
+        //			height: getSize()
 
-			MouseArea {
-				height: sizeClosed
-				propagateComposedEvents: true
-				preventStealing: true
-				acceptedButtons: Qt.LeftButton | Qt.RightButton
+        //			function getSize() {
+        //				if(!tableView4.selection.contains(styleData.row)) {
+        //					doClose.start();
+        //					return sizeClosed;
+        //				}
+        //				return sizeOpen;
+        //			}
 
-				onClicked: {
-					if(rowDelegate.sizeOpen == rowDelegate.height) {
-						tableView4.selection.deselect(styleData.row);
-						doClose.start()
-					} else {
-						tableView4.selection.clear();
-						tableView4.selection.select(styleData.row);
-						doOpen.start();
-					}
-				}
-			}
+        //			MouseArea {
+        //				height: sizeClosed
+        //				propagateComposedEvents: true
+        //				preventStealing: true
+        //				acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-			ParallelAnimation {
-				id: doOpen
-				running: false
-				NumberAnimation {
-				    target: rowDelegate;
-				    easing.type: Easing.OutSine;
-				    property: "height";
-				    to: sizeOpen;
-				    duration: 100
-				}
-			}
+        //				onClicked: {
+        //					if(rowDelegate.sizeOpen == rowDelegate.height) {
+        //						tableView4.selection.deselect(styleData.row);
+        //						doClose.start()
+        //					} else {
+        //						tableView4.selection.clear();
+        //						tableView4.selection.select(styleData.row);
+        //						doOpen.start();
+        //					}
+        //				}
+        //			}
 
-			ParallelAnimation {
-				id: doClose
-				running: false
-				NumberAnimation {
-				    target: rowDelegate;
-				    easing.type: Easing.OutSine;
-				    property: "height";
-				    to: sizeClosed;
-				    duration: 100;
-				}
-			}
-		}
+        //			ParallelAnimation {
+        //				id: doOpen
+        //				running: false
+        //				NumberAnimation {
+        //				    target: rowDelegate;
+        //				    easing.type: Easing.OutSine;
+        //				    property: "height";
+        //				    to: sizeOpen;
+        //				    duration: 100
+        //				}
+        //			}
 
+        //			ParallelAnimation {
+        //				id: doClose
+        //				running: false
+        //				NumberAnimation {
+        //				    target: rowDelegate;
+        //				    easing.type: Easing.OutSine;
+        //				    property: "height";
+        //				    to: sizeClosed;
+        //				    duration: 100;
+        //				}
+        //			}
+        //		}
         model: pembayaran
 
         ListModel {
@@ -470,6 +473,93 @@ Page {
                 no: "4"
                 metode: "Promo"
                 jumlah: "100"
+            }
+        }
+    }
+
+    Rectangle {
+        id: rectangle3
+        y: 558
+        height: 41
+        color: appStyle.background
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
+        anchors.left: tableView3.right
+        anchors.leftMargin: 39
+        anchors.right: parent.right
+        anchors.rightMargin: 10
+        Button {
+            id: button4
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            
+            Text {
+                text: qsTr("Bayar")
+                font.bold: true
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.background
+                font.pixelSize: 18
+            }
+            anchors.left: button5.right
+            anchors.leftMargin: 10
+            anchors.top: parent.top
+            anchors.topMargin: 0
+            style: ButtonStyle {
+                background: Rectangle {
+                    implicitWidth: 100
+                    implicitHeight: 40
+                    border.width: control.activeFocus ? 2 : 1
+                    border.color: appStyle.border
+                    radius: 10
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0
+                            color: control.pressed ? appStyle.background : appStyle.button2
+                        }
+                    }
+                }
+            }
+        }
+
+        Button {
+            id: button5
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            onClicked: {
+                    var component = Qt.createComponent("SplitBill.qml")
+                    var split = component.createObject(this)
+                    split.show()
+                }
+            Text {
+                text: qsTr("Split Bill / Payment")
+                font.bold: true
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.background
+                font.pixelSize: 18
+            }
+
+            anchors.top: parent.top
+            anchors.topMargin: 0
+            style: ButtonStyle {
+                background: Rectangle {
+                    implicitWidth: 200
+                    implicitHeight: 40
+                    border.width: control.activeFocus ? 2 : 1
+                    border.color: appStyle.border
+                    radius: 10
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0
+                            color: control.pressed ? appStyle.background : appStyle.button1
+                        }
+                    }
+                }
             }
         }
     }
