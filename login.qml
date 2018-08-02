@@ -15,6 +15,12 @@ Window {
     height: 480
     title: qsTr("Login")
 
+    onActiveFocusItemChanged: {
+        if (!activeFocusItem) {
+            window.visible = false
+        }
+    }
+
     property variant appStyle: Style {
         id: style
     }
@@ -53,8 +59,8 @@ Window {
                 objectName: "myButton"
                 onClicked: {
                     var component = Qt.createComponent("main.qml")
-                    var window = component.createObject(this)
-                    window.show()
+                    var menu = component.createObject(this)
+                    menu.show()
                 }
                 id: button
                 width: 400
