@@ -189,20 +189,45 @@ Window {
             }
         }
 
-        itemDelegate: Item {
-            Text {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                //color: styleData.textColor
-                elide: styleData.elideMode
-                text: styleData.value
-                color: styleData.alternate ? appStyle.header1 : appStyle.text
-            }
-        }
+        itemDelegate: Rectangle {
+
+                border.color: appStyle.header1
+                color: appStyle.background
+
+
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.rightMargin: 1
+                    opacity: 0.8
+                    Text {
+                        id: textItem
+                        opacity: 1
+                        anchors.fill: parent
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        anchors.leftMargin: 0
+                        text: styleData.value
+                        elide: Text.ElideRight
+                        color: appStyle.text
+                        renderType: Text.NativeRendering
+                    }
+                }
+         }
+
+//        itemDelegate: Item {
+//            Text {
+//                anchors.verticalCenter: parent.verticalCenter
+//                anchors.horizontalCenter: parent.horizontalCenter
+//                //color: styleData.textColor
+//                elide: styleData.elideMode
+//                text: styleData.value
+//                color: styleData.alternate ? appStyle.header1 : appStyle.text
+//            }
+//        }
 
         rowDelegate: Rectangle {
             property int sizeOpen: 50
-			property int sizeClosed: 30
+			property int sizeClosed: 50
 
 			id: rowDelegate
 			color: styleData.alternate ? appStyle.bgCard : appStyle.background

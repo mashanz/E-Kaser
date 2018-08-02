@@ -214,17 +214,40 @@ Page {
                 }
             }
         }
+        itemDelegate: Rectangle {
 
-        itemDelegate: Item {
-            Text {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                color: appStyle.text
-                elide: styleData.elideMode
-                text: styleData.value
+                border.color: appStyle.header1
+                color: appStyle.background
+
+
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.rightMargin: 1
+                    opacity: 0.8
+                    Text {
+                        id: textItem
+                        opacity: 1
+                        anchors.fill: parent
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        anchors.leftMargin: 0
+                        text: styleData.value
+                        elide: Text.ElideRight
+                        color: appStyle.text
+                        renderType: Text.NativeRendering
+                    }
+                }
             }
-            height: 40
-        }
+//        itemDelegate: Item {
+//            Text {
+//                anchors.verticalCenter: parent.verticalCenter
+//                anchors.horizontalCenter: parent.horizontalCenter
+//                color: appStyle.text
+//                elide: styleData.elideMode
+//                text: styleData.value
+//            }
+//            height: 40
+//        }
 
         rowDelegate: Rectangle {
             property int sizeOpen: 50
@@ -234,7 +257,7 @@ Page {
 			color: styleData.alternate ? appStyle.bgCard : appStyle.background
 			height: getSize()
 
-			function getSize() {
+            function getSize() {
 				if(!tableView.selection.contains(styleData.row)) {
 					doClose.start();
 					return sizeClosed;
@@ -477,6 +500,33 @@ Page {
             width: tableView2.viewport.width * 4 / 20
         }
 
+//        itemDelegate: Rectangle {
+//                width: 200
+//                height: 200
+//
+//                border.color: appStyle.header1
+//                color: appStyle.background
+//
+//
+//                Rectangle {
+//                    anchors.fill: parent
+//                    anchors.rightMargin: 1
+//                    opacity: 0.9
+//                    Text {
+//                        id: textItem
+//                        opacity: 1
+//                        anchors.fill: parent
+//                        verticalAlignment: Text.AlignVCenter
+//                        horizontalAlignment: Text.AlignHCenter
+//                        anchors.leftMargin: 0
+//                        text: styleData.value
+//                        elide: Text.ElideRight
+//                        color: appStyle.text
+//                        renderType: Text.NativeRendering
+//                    }
+//                }
+//            }
+
         itemDelegate: Item {
             Text {
                 anchors {
@@ -491,14 +541,6 @@ Page {
                 wrapMode: Text.Wrap
                 horizontalAlignment:Text.AlignHCenter
             }
-//            Text {
-//                anchors.verticalCenter: parent.verticalCenter
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                color: appStyle.text
-//                //elide: styleData.elideMode
-//                wrapMode: Text.WordWrap
-//                text: styleData.value
-//            }
             height: 40
         }
 
@@ -527,7 +569,6 @@ Page {
                     anchors.bottomMargin: 1
                     anchors.topMargin: 1
                     width: 1
-                    color: appStyle.header1
                 }
             }
         }
