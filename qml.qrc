@@ -1,15 +1,19 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Page1Form.ui.qml</file>
-        <file>Page2Form.ui.qml</file>
-        <file>Page3Form.ui.qml</file>
+            <file>Page1Form.ui.qml</file>
+            <file>Page2Form.ui.qml</file>
+            <file>Page3Form.ui.qml</file>
         <file>main.qml</file>
+
         <file>login.qml</file>
         <file>customer.qml</file>
+
         <file>SplitBill.qml</file>
-        <file>SplitPayment.qml</file>
-        <file>PageBill.ui.qml</file>
+            <file>PageBill.ui.qml</file>
+            <file>PagePayment.ui.qml</file>
+        <file>SplitBill.qml</file>
+
         <file>PagePayment.ui.qml</file>
         <file>run.qml</file>
         <file>Child.qml</file>

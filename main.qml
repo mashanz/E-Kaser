@@ -19,13 +19,13 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        Page1Form {
-        }
-
         Page2Form {
         }
 
         Page3Form {
+        }
+
+        Page1Form {
         }
 
     }
@@ -40,7 +40,7 @@ ApplicationWindow {
 
         TabButton {
             Text {
-                text: qsTr("Registrasi")
+                text: qsTr("Menu")
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 font.bold: true
@@ -59,7 +59,7 @@ ApplicationWindow {
 
         TabButton {
             Text {
-                text: qsTr("Menu")
+                text: qsTr("Pembayaran")
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 font.bold: true
@@ -78,7 +78,7 @@ ApplicationWindow {
 
         TabButton {
             Text {
-                text: qsTr("Pembayaran")
+                text: qsTr("Registrasi")
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 font.bold: true

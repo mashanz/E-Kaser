@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.2
 
 Page {
-    id: page
+    id: page1
     width: 1280
     height: 660
 

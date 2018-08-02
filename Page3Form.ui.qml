@@ -8,7 +8,7 @@ import QtQuick 2.2
 import QtQuick.Window 2.2
 
 Page {
-    id: page
+    id: page3
     width: 1280
     height: 660
 
@@ -126,14 +126,23 @@ Page {
             }
         }
 
-        itemDelegate: Item {
+        itemDelegate: Rectangle {
+            border.color: appStyle.header1
+            color: "transparent"
             Text {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                color: styleData.textColor
-                elide: styleData.elideMode
+                id: text1
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
+                }
                 text: styleData.value
+                wrapMode: Text.Wrap
+                color: appStyle.text
+                renderType: Text.NativeRendering
+                horizontalAlignment:Text.AlignHCenter
             }
+            height: 40
         }
 
         model: pesananya
@@ -188,6 +197,64 @@ Page {
         anchors.topMargin: -55
         anchors.right: parent.right
         anchors.rightMargin: 52
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        font.pixelSize: Qt.application.font.pixelSize
+        padding: 10
+        color: appStyle.button1
+    }
+
+    Label {
+        id: textCustomer
+        x: 1088
+        y: 26
+        text: qsTr("Ini Budi Dong")
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: label1.bottom
+        anchors.topMargin: -25
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        font.pixelSize: Qt.application.font.pixelSize * 2
+        padding: 10
+        color: appStyle.text
+    }
+
+    Label {
+        id: labelCustomer
+        x: 1176
+        text: qsTr("Customer")
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: -55
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        font.pixelSize: Qt.application.font.pixelSize
+        padding: 10
+        color: appStyle.button1
+    }
+
+    Label {
+        id: textMeja
+        x: 1088
+        y: 26
+        text: qsTr("5")
+        anchors.horizontalCenter: labelMeja.horizontalCenter
+        anchors.top: label1.bottom
+        anchors.topMargin: -25
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        font.pixelSize: Qt.application.font.pixelSize * 2
+        padding: 10
+        color: appStyle.text
+    }
+
+    Label {
+        id: labelMeja
+        text: qsTr("Meja")
+        anchors.left: parent.left
+        anchors.leftMargin: 250
+        anchors.top: parent.top
+        anchors.topMargin: -55
         font.bold: true
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize
@@ -380,16 +447,35 @@ Page {
             }
         }
 
-        itemDelegate: Item {
+        itemDelegate: Rectangle {
+            border.color: appStyle.header1
+            color: "transparent"
             Text {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                color: appStyle.text
-                elide: styleData.elideMode
+                id: text1q
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
+                }
                 text: styleData.value
+                wrapMode: Text.Wrap
+                color: appStyle.text
+                renderType: Text.NativeRendering
+                horizontalAlignment:Text.AlignHCenter
             }
             height: 40
         }
+
+//        itemDelegate: Item {
+//            Text {
+//                anchors.verticalCenter: parent.verticalCenter
+//                anchors.horizontalCenter: parent.horizontalCenter
+//                color: appStyle.text
+//                elide: styleData.elideMode
+//                text: styleData.value
+//            }
+//            height: 40
+//        }
 
 
         //        rowDelegate: Rectangle {
@@ -530,9 +616,9 @@ Page {
             anchors.leftMargin: 10
             onClicked: {
                     var component = Qt.createComponent("SplitBill.qml")
-                    var split = component.createObject(this)
-                    split.show()
-                }
+                    var splits = component.createObject(this)
+                    splits.show()
+            }
             Text {
                 text: qsTr("Split Bill / Payment")
                 font.bold: true

@@ -190,40 +190,23 @@ Window {
         }
 
         itemDelegate: Rectangle {
-
-                border.color: appStyle.header1
-                color: appStyle.background
-
-
-                Rectangle {
-                    anchors.fill: parent
-                    anchors.rightMargin: 1
-                    opacity: 0.8
-                    Text {
-                        id: textItem
-                        opacity: 1
-                        anchors.fill: parent
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        anchors.leftMargin: 0
-                        text: styleData.value
-                        elide: Text.ElideRight
-                        color: appStyle.text
-                        renderType: Text.NativeRendering
-                    }
+            border.color: appStyle.header1
+            color: "transparent"
+            Text {
+                id: text1
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
                 }
-         }
-
-//        itemDelegate: Item {
-//            Text {
-//                anchors.verticalCenter: parent.verticalCenter
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                //color: styleData.textColor
-//                elide: styleData.elideMode
-//                text: styleData.value
-//                color: styleData.alternate ? appStyle.header1 : appStyle.text
-//            }
-//        }
+                text: styleData.value
+                wrapMode: Text.Wrap
+                color: appStyle.text
+                renderType: Text.NativeRendering
+                horizontalAlignment:Text.AlignHCenter
+            }
+            height: 40
+        }
 
         rowDelegate: Rectangle {
             property int sizeOpen: 50

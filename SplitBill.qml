@@ -4,11 +4,11 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.4
 
 ApplicationWindow {
-    id: root
+    id: splitBillPayment
     visible: true
     width: 1280
     height: 720
-    title: qsTr("Khaseer")
+    title: qsTr("Split Bill / Payment")
 
     property variant appStyle: Style {
         id: style

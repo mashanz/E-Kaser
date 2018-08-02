@@ -5,7 +5,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.4
 
 Page {
-    id: page
+    id: page2
     width: 1280
     height: 660
     font.bold: false
@@ -35,7 +35,6 @@ Page {
 
     Rectangle {
         id: rectangle1
-        width: 152
         height: 40
         color: appStyle.inputTxt
         anchors.left: parent.left
@@ -45,6 +44,8 @@ Page {
         border.color: appStyle.border
         border.width: 2
         radius: 10
+        anchors.right: rectMeja.right
+        anchors.rightMargin: 0
 
         TextInput {
             id: textInput4
@@ -94,6 +95,77 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 color: appStyle.hint
                 visible: !textInput2.text
+                font.pixelSize: 18
+            }
+            anchors.right: parent.right
+            anchors.left: parent.left
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 18
+        }
+    }
+
+    Rectangle {
+        id: rectMeja
+        width: 100
+        height: 40
+        color: appStyle.inputTxt
+        border.color: appStyle.border
+        border.width: 2
+        radius: 10
+        anchors.left: parent.left
+        anchors.leftMargin: 100
+        anchors.top: parent.top
+        anchors.topMargin: -45
+
+        TextInput {
+            id: inputMeja
+            property string placeholderText: "No Meja.."
+            anchors.verticalCenter: parent.verticalCenter
+            Text {
+                text: inputMeja.placeholderText
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.hint
+                visible: !inputMeja.text
+                font.pixelSize: 18
+            }
+            anchors.right: parent.right
+            anchors.left: parent.left
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 18
+        }
+    }
+
+    Rectangle {
+        id: rectCustomer
+        height: 40
+        color: appStyle.inputTxt
+        border.color: appStyle.border
+        border.width: 2
+        radius: 10
+        anchors.left: rectMeja.right
+        anchors.leftMargin: 10
+        anchors.right: tableView.right
+        anchors.rightMargin: 0
+        anchors.top: parent.top
+        anchors.topMargin: -45
+
+        TextInput {
+            id: inputCustomer
+            property string placeholderText: "Nama Customer"
+            anchors.verticalCenter: parent.verticalCenter
+            Text {
+                text: inputCustomer.placeholderText
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.hint
+                visible: !inputCustomer.text
                 font.pixelSize: 18
             }
             anchors.right: parent.right
@@ -215,98 +287,82 @@ Page {
             }
         }
         itemDelegate: Rectangle {
-
-                border.color: appStyle.header1
-                color: appStyle.background
-
-
-                Rectangle {
-                    anchors.fill: parent
-                    anchors.rightMargin: 1
-                    opacity: 0.8
-                    Text {
-                        id: textItem
-                        opacity: 1
-                        anchors.fill: parent
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        anchors.leftMargin: 0
-                        text: styleData.value
-                        elide: Text.ElideRight
-                        color: appStyle.text
-                        renderType: Text.NativeRendering
-                    }
+            border.color: appStyle.header1
+            color: "transparent"
+            Text {
+                id: text1
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
                 }
+                text: styleData.value
+                wrapMode: Text.Wrap
+                color: appStyle.text
+                renderType: Text.NativeRendering
+                horizontalAlignment:Text.AlignHCenter
             }
-//        itemDelegate: Item {
-//            Text {
-//                anchors.verticalCenter: parent.verticalCenter
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                color: appStyle.text
-//                elide: styleData.elideMode
-//                text: styleData.value
-//            }
-//            height: 40
-//        }
+            height: 40
+        }
 
         rowDelegate: Rectangle {
             property int sizeOpen: 50
-			property int sizeClosed: 50
+            property int sizeClosed: 50
 
-			id: rowDelegate
-			color: styleData.alternate ? appStyle.bgCard : appStyle.background
-			height: getSize()
+            id: rowDelegate
+            color: styleData.alternate ? appStyle.bgCard : appStyle.background
+            height: getSize()
 
             function getSize() {
-				if(!tableView.selection.contains(styleData.row)) {
-					doClose.start();
-					return sizeClosed;
-				}
-				return sizeOpen;
-			}
+                if(!tableView.selection.contains(styleData.row)) {
+                    doClose.start();
+                    return sizeClosed;
+                }
+                return sizeOpen;
+            }
 
-			MouseArea {
-				height: sizeClosed
-				propagateComposedEvents: true
-				preventStealing: true
-				acceptedButtons: Qt.LeftButton | Qt.RightButton
+            MouseArea {
+                height: sizeClosed
+                propagateComposedEvents: true
+                preventStealing: true
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-				onClicked: {
-					if(rowDelegate.sizeOpen == rowDelegate.height) {
-						tableView.selection.deselect(styleData.row);
-						doClose.start()
-					} else {
-						tableView.selection.clear();
-						tableView.selection.select(styleData.row);
-						doOpen.start();
-					}
-				}
-			}
+                onClicked: {
+                    if(rowDelegate.sizeOpen == rowDelegate.height) {
+                        tableView.selection.deselect(styleData.row);
+                        doClose.start()
+                    } else {
+                        tableView.selection.clear();
+                        tableView.selection.select(styleData.row);
+                        doOpen.start();
+                    }
+                }
+            }
 
-			ParallelAnimation {
-				id: doOpen
-				running: false
-				NumberAnimation {
-				    target: rowDelegate;
-				    easing.type: Easing.OutSine;
-				    property: "height";
-				    to: sizeOpen;
-				    duration: 100
-				}
-			}
+            ParallelAnimation {
+                id: doOpen
+                running: false
+                NumberAnimation {
+                    target: rowDelegate;
+                    easing.type: Easing.OutSine;
+                    property: "height";
+                    to: sizeOpen;
+                    duration: 100
+                }
+            }
 
-			ParallelAnimation {
-				id: doClose
-				running: false
-				NumberAnimation {
-				    target: rowDelegate;
-				    easing.type: Easing.OutSine;
-				    property: "height";
-				    to: sizeClosed;
-				    duration: 100;
-				}
-			}
-		}
+            ParallelAnimation {
+                id: doClose
+                running: false
+                NumberAnimation {
+                    target: rowDelegate;
+                    easing.type: Easing.OutSine;
+                    property: "height";
+                    to: sizeClosed;
+                    duration: 100;
+                }
+            }
+        }
 
         model: pesanan
 
@@ -527,18 +583,23 @@ Page {
 //                }
 //            }
 
-        itemDelegate: Item {
+        itemDelegate: Rectangle {
+            border.color: appStyle.header1
+            color: "transparent"
             Text {
+                id: text12
                 anchors {
                     left: parent.left
                     right: parent.right
                     verticalCenter: parent.verticalCenter
+                    leftMargin: 5
+                    rightMargin: 5
                 }
-                id: text1
+
                 text: styleData.value
-                //text: "orem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in mollis purus\n\n" +
-                //"Etiam sagittis fringilla quam, eget accumsan libero pulvinar ac."
                 wrapMode: Text.Wrap
+                color: appStyle.text
+                renderType: Text.NativeRendering
                 horizontalAlignment:Text.AlignHCenter
             }
             height: 40
@@ -548,7 +609,7 @@ Page {
             headerDelegate: Rectangle {
                 height: textItem2.implicitHeight * 1.2
                 color: appStyle.header1
-                width: textItem2.implicitWidth
+                //width: textItem2.implicitWidth
                 Text {
                     id: textItem2
                     anchors.fill: parent
@@ -569,68 +630,69 @@ Page {
                     anchors.bottomMargin: 1
                     anchors.topMargin: 1
                     width: 1
+                    color: appStyle.header1
                 }
             }
         }
 
         rowDelegate: Rectangle {
             property int sizeOpen: 50
-			property int sizeClosed: 50
+            property int sizeClosed: 50
 
-			id: rowDelegate
-			color: styleData.alternate ? appStyle.bgCard : appStyle.background
-			height: getSize()
+            id: rowDelegate
+            color: styleData.alternate ? appStyle.bgCard : appStyle.background
+            height: getSize()
 
-			function getSize() {
-				if(!tableView2.selection.contains(styleData.row)) {
-					doClose.start();
-					return sizeClosed;
-				}
-				return sizeOpen;
-			}
+            function getSize() {
+                if(!tableView2.selection.contains(styleData.row)) {
+                    doClose.start();
+                    return sizeClosed;
+                }
+                return sizeOpen;
+            }
 
-			MouseArea {
-				height: sizeClosed
-				propagateComposedEvents: true
-				preventStealing: true
-				acceptedButtons: Qt.LeftButton | Qt.RightButton
+            MouseArea {
+                height: sizeClosed
+                propagateComposedEvents: true
+                preventStealing: true
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-				onClicked: {
-					if(rowDelegate.sizeOpen == rowDelegate.height) {
-						tableView2.selection.deselect(styleData.row);
-						doClose.start()
-					} else {
-						tableView2.selection.clear();
-						tableView2.selection.select(styleData.row);
-						doOpen.start();
-					}
-				}
-			}
+                onClicked: {
+                    if(rowDelegate.sizeOpen == rowDelegate.height) {
+                        tableView2.selection.deselect(styleData.row);
+                        doClose.start()
+                    } else {
+                        tableView2.selection.clear();
+                        tableView2.selection.select(styleData.row);
+                        doOpen.start();
+                    }
+                }
+            }
 
-			ParallelAnimation {
-				id: doOpen
-				running: false
-				NumberAnimation {
-				    target: rowDelegate;
-				    easing.type: Easing.OutSine;
-				    property: "height";
-				    to: sizeOpen;
-				    duration: 100
-				}
-			}
+            ParallelAnimation {
+                id: doOpen
+                running: false
+                NumberAnimation {
+                    target: rowDelegate;
+                    easing.type: Easing.OutSine;
+                    property: "height";
+                    to: sizeOpen;
+                    duration: 100
+                }
+            }
 
-			ParallelAnimation {
-				id: doClose
-				running: false
-				NumberAnimation {
-				    target: rowDelegate;
-				    easing.type: Easing.OutSine;
-				    property: "height";
-				    to: sizeClosed;
-				    duration: 100;
-				}
-			}
-		}
+            ParallelAnimation {
+                id: doClose
+                running: false
+                NumberAnimation {
+                    target: rowDelegate;
+                    easing.type: Easing.OutSine;
+                    property: "height";
+                    to: sizeClosed;
+                    duration: 100;
+                }
+            }
+        }
 
         model: menunya
 
