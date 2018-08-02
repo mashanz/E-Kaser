@@ -3,6 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.4
+
 Page {
     id: page
     width: 1280
@@ -44,7 +45,6 @@ Page {
 
         frameVisible: false
         sortIndicatorVisible: true
-
 
         Layout.minimumWidth: 400
         Layout.minimumHeight: 240
@@ -128,7 +128,7 @@ Page {
     }
 
     Label {
-        id : labelTotal
+        id: labelTotal
         x: 1088
         y: 26
         text: qsTr("Rp 1.200.500")
@@ -144,7 +144,7 @@ Page {
     }
 
     Label {
-        id : label1
+        id: label1
         x: 1176
         text: qsTr("Total")
         anchors.top: parent.top
@@ -160,11 +160,13 @@ Page {
 
     Rectangle {
         id: rectangle1
-        x: 820
         y: 15
-        width: 451
         height: 41
-        color : appStyle.background
+        color: appStyle.background
+        anchors.left: tableView3.right
+        anchors.leftMargin: 38
+        anchors.right: parent.right
+        anchors.rightMargin: 10
         Button {
             id: button2
             Text {
@@ -182,16 +184,19 @@ Page {
             anchors.top: parent.top
             anchors.topMargin: 0
             style: ButtonStyle {
-                    background: Rectangle {
-                        implicitWidth: 100
-                        implicitHeight: 40
-                        border.width: control.activeFocus ? 2 : 1
-                        border.color: appStyle.border
-                        radius: 10
-                        gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
+                background: Rectangle {
+                    implicitWidth: 100
+                    implicitHeight: 40
+                    border.width: control.activeFocus ? 2 : 1
+                    border.color: appStyle.border
+                    radius: 10
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0
+                            color: control.pressed ? appStyle.background : appStyle.button
                         }
                     }
+                }
             }
         }
 
@@ -212,16 +217,19 @@ Page {
             anchors.top: parent.top
             anchors.topMargin: 0
             style: ButtonStyle {
-                    background: Rectangle {
-                        implicitWidth: 100
-                        implicitHeight: 40
-                        border.width: control.activeFocus ? 2 : 1
-                        border.color: appStyle.border
-                        radius: 10
-                        gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
+                background: Rectangle {
+                    implicitWidth: 100
+                    implicitHeight: 40
+                    border.width: control.activeFocus ? 2 : 1
+                    border.color: appStyle.border
+                    radius: 10
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0
+                            color: control.pressed ? appStyle.background : appStyle.button
                         }
                     }
+                }
             }
         }
 
@@ -243,26 +251,28 @@ Page {
             anchors.top: parent.top
             anchors.topMargin: 0
             style: ButtonStyle {
-                    background: Rectangle {
-                        implicitWidth: 100
-                        implicitHeight: 40
-                        border.width: control.activeFocus ? 2 : 1
-                        border.color: appStyle.border
-                        radius: 10
-                        gradient: Gradient {
-                            GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
+                background: Rectangle {
+                    implicitWidth: 100
+                    implicitHeight: 40
+                    border.width: control.activeFocus ? 2 : 1
+                    border.color: appStyle.border
+                    radius: 10
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0
+                            color: control.pressed ? appStyle.background : appStyle.button
                         }
                     }
+                }
             }
         }
     }
 
-
     TableView {
         id: tableView4
-        x: 830
-        width: 450
         height: 524
+        anchors.left: rectangle1.left
+        anchors.leftMargin: 0
         anchors.top: rectangle1.bottom
         anchors.topMargin: 10
         anchors.bottom: parent.bottom
@@ -306,7 +316,6 @@ Page {
             width: tableView4.viewport.width / 3
         }
 
-
         style: TableViewStyle {
             headerDelegate: Rectangle {
                 height: textItem3.implicitHeight * 1.2
@@ -338,7 +347,6 @@ Page {
         }
     }
 
-
     //    TableView {
     //        id: tableView
     //        anchors.top: rectangle.bottom
@@ -347,7 +355,6 @@ Page {
 
     //        frameVisible: false
     //           sortIndicatorVisible: true
-
 
     //           Layout.minimumWidth: 400
     //           Layout.minimumHeight: 240
@@ -465,12 +472,10 @@ Page {
     //               }
     //           }
     //       }
-
 }
 
-
-
 /*##^## Designer {
-    D{i:18;anchors_y:"-36"}D{i:27;anchors_height:528;anchors_y:71}
+    D{i:18;anchors_y:"-36"}D{i:27;anchors_height:528;anchors_y:71}D{i:16;anchors_width:451;anchors_x:820}
+D{i:38;anchors_width:450;anchors_x:830}
 }
  ##^##*/

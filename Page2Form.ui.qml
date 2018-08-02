@@ -70,12 +70,13 @@ Page {
 
     Rectangle {
         id: rectangle2
-        width: 438
         height: 40
         color: appStyle.inputTxt
         border.color: appStyle.border
         border.width: 2
         radius: 10
+        anchors.right: tableView.right
+        anchors.rightMargin: 0
         anchors.left: rectangle1.right
         anchors.leftMargin: 10
         anchors.top: rectangle.bottom
@@ -105,14 +106,16 @@ Page {
 
     Rectangle {
         id: rectangle3
-        width: 376
+        width: 0
         height: 40
         color: appStyle.inputTxt
         border.color: appStyle.border
         border.width: 2
         radius: 10
-        anchors.left: rectangle2.right
-        anchors.leftMargin: 60
+        anchors.left: tableView2.left
+        anchors.leftMargin: 0
+        anchors.right: parent.right
+        anchors.rightMargin: 200
         anchors.top: rectangle.bottom
         anchors.topMargin: 5
 
@@ -140,7 +143,8 @@ Page {
 
     TableView {
         id: tableView
-        width: 600
+        anchors.right: button1.left
+        anchors.rightMargin: 10
         anchors.left: parent.left
         anchors.leftMargin: 10
         anchors.bottom: parent.bottom
@@ -240,7 +244,8 @@ Page {
 
     TableView {
         id: tableView2
-        width: 600
+        anchors.left: button1.right
+        anchors.leftMargin: 10
         anchors.top: rectangle2.bottom
         anchors.topMargin: 10
         anchors.bottom: parent.bottom
@@ -333,101 +338,122 @@ Page {
         }
     }
 
-       Button {
-           id: button
-           height: 40
-           Text {
-                text: qsTr("Submit")
-                font.bold: true
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: appStyle.background
-                font.pixelSize: 18
-           }
-           anchors.top: rectangle.bottom
-           anchors.topMargin: 5
-           anchors.right: parent.right
-           anchors.rightMargin: 10
-           anchors.left: rectangle3.right
-           anchors.leftMargin: 10
-           style: ButtonStyle {
-                   background: Rectangle {
-                       implicitWidth: 100
-                       implicitHeight: 25
-                       border.width: control.activeFocus ? 2 : 1
-                       border.color: appStyle.border
-                       radius: 10
-                       gradient: Gradient {
-                           GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
-                           GradientStop { position: 1 ; color: control.pressed ? appStyle.background : appStyle.button }
-                       }
-                   }
-           }
-       }
+    Button {
+        id: button
+        width: 100
+        height: 40
+        Text {
+            text: qsTr("Submit")
+            font.bold: true
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: appStyle.background
+            font.pixelSize: 18
+        }
+        anchors.top: rectangle.bottom
+        anchors.topMargin: 5
+        anchors.right: parent.right
+        anchors.rightMargin: 10
+        anchors.left: rectangle3.right
+        anchors.leftMargin: 10
+        style: ButtonStyle {
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 25
+                border.width: control.activeFocus ? 2 : 1
+                border.color: appStyle.border
+                radius: 10
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? appStyle.background : appStyle.button
+                    }
+                    GradientStop {
+                        position: 1
+                        color: control.pressed ? appStyle.background : appStyle.button
+                    }
+                }
+            }
+        }
+    }
 
-       Button {
-           id: button1
-           x: 619
-           y: 285
-           width: 42
-           height: 40
-           Text {
-                text: qsTr(">")
-                font.bold: true
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: appStyle.background
-                font.pixelSize: 18
-           }
-           style: ButtonStyle {
-                   background: Rectangle {
-                       border.width: control.activeFocus ? 2 : 1
-                       border.color: appStyle.border
-                       radius: 255
-                       gradient: Gradient {
-                           GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
-                           GradientStop { position: 1 ; color: control.pressed ? appStyle.background : appStyle.button }
-                       }
-                   }
-           }
-       }
+    Button {
+        id: button1
+        x: 619
+        y: 285
+        width: 42
+        height: 40
+        anchors.horizontalCenter: parent.horizontalCenter
+        Text {
+            text: qsTr(">")
+            font.bold: true
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: appStyle.background
+            font.pixelSize: 18
+        }
+        style: ButtonStyle {
+            background: Rectangle {
+                border.width: control.activeFocus ? 2 : 1
+                border.color: appStyle.border
+                radius: 255
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? appStyle.background : appStyle.button
+                    }
+                    GradientStop {
+                        position: 1
+                        color: control.pressed ? appStyle.background : appStyle.button
+                    }
+                }
+            }
+        }
+    }
 
-       Button {
-           id: button2
-           x: 619
-           y: 345
-           width: 42
-           height: 40
-           Text {
-                text: qsTr("<")
-                font.bold: true
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: appStyle.background
-                font.pixelSize: 18
-           }
-           style: ButtonStyle {
-                   background: Rectangle {
-                       border.width: control.activeFocus ? 2 : 1
-                       border.color: appStyle.border
-                       radius: 255
-                       gradient: Gradient {
-                           GradientStop { position: 0 ; color: control.pressed ? appStyle.background : appStyle.button }
-                           GradientStop { position: 1 ; color: control.pressed ? appStyle.background : appStyle.button }
-                       }
-                   }
-           }
-       }
+    Button {
+        id: button2
+        x: 619
+        y: 345
+        width: 42
+        height: 40
+        anchors.horizontalCenter: parent.horizontalCenter
+        Text {
+            text: qsTr("<")
+            font.bold: true
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: appStyle.background
+            font.pixelSize: 18
+        }
+        style: ButtonStyle {
+            background: Rectangle {
+                border.width: control.activeFocus ? 2 : 1
+                border.color: appStyle.border
+                radius: 255
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? appStyle.background : appStyle.button
+                    }
+                    GradientStop {
+                        position: 1
+                        color: control.pressed ? appStyle.background : appStyle.button
+                    }
+                }
+            }
+        }
+    }
 }
 
 /*##^## Designer {
-    D{i:4;anchors_y:11}D{i:7;anchors_y:0}D{i:18;anchors_height:539;anchors_width:598;anchors_y:70}
-D{i:25;anchors_y:15}
+    D{i:4;anchors_y:11}D{i:7;anchors_width:438;anchors_y:0}D{i:10;anchors_width:376}D{i:18;anchors_height:539;anchors_width:598;anchors_y:70}
+D{i:13;anchors_width:600}D{i:25;anchors_y:15}D{i:21;anchors_width:600}
 }
  ##^##*/
