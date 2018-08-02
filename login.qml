@@ -1,4 +1,5 @@
 import QtQuick 2.9
+import QtQuick 2.2
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 
@@ -48,6 +49,9 @@ Window {
             }
 
             Button {
+                signal messageRequired
+                objectName: "myButton"
+                // onClicked: messageRequired()
                 id: button
                 width: 400
                 height: 40
@@ -113,7 +117,7 @@ Window {
                 TextInput {
                     id: textInput2
                     property string placeholderText: "password"
-                    y: 0
+                    echoMode: TextInput.Password
                     font.bold: true
                     color: appStyle.text
                     anchors.verticalCenter: parent.verticalCenter
