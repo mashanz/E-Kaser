@@ -477,6 +477,31 @@ Page {
             width: tableView2.viewport.width * 4 / 20
         }
 
+        itemDelegate: Item {
+            Text {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    verticalCenter: parent.verticalCenter
+                }
+                id: text1
+                text: styleData.value
+                //text: "orem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in mollis purus\n\n" +
+                //"Etiam sagittis fringilla quam, eget accumsan libero pulvinar ac."
+                wrapMode: Text.Wrap
+                horizontalAlignment:Text.AlignHCenter
+            }
+//            Text {
+//                anchors.verticalCenter: parent.verticalCenter
+//                anchors.horizontalCenter: parent.horizontalCenter
+//                color: appStyle.text
+//                //elide: styleData.elideMode
+//                wrapMode: Text.WordWrap
+//                text: styleData.value
+//            }
+            height: 40
+        }
+
         style: TableViewStyle {
             headerDelegate: Rectangle {
                 height: textItem2.implicitHeight * 1.2
