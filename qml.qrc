@@ -21,5 +21,6 @@
         <file>food.ico</file>
         <file>qtquickcontrols2.conf</file>
         <file>Style.qml</file>
+        <file>bayar.qml</file>
     </qresource>
 </RCC>

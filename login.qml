@@ -14,7 +14,6 @@ Window {
     width: 720
     height: 480
     title: qsTr("Login")
-
     onActiveFocusItemChanged: {
         if (!activeFocusItem) {
             window.visible = false

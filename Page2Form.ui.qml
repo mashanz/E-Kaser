@@ -17,6 +17,7 @@ Page {
     header: Label {
         text: qsTr("Menu")
         font.bold: true
+        anchors.leftMargin: 10
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
@@ -184,6 +185,7 @@ Page {
         border.color: appStyle.border
         border.width: 2
         radius: 10
+        visible: false
         anchors.left: tableView2.left
         anchors.leftMargin: 0
         anchors.right: parent.right
@@ -203,6 +205,78 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 color: appStyle.hint
                 visible: !textInput3.text
+                font.pixelSize: 18
+            }
+            anchors.right: parent.right
+            anchors.left: parent.left
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 18
+        }
+    }
+
+    Rectangle {
+        id: inputTelepon
+        width: 310
+        height: 40
+        color: appStyle.inputTxt
+        border.color: appStyle.border
+        border.width: 2
+        radius: 10
+        anchors.left: tableView2.left
+        anchors.leftMargin: 0
+        anchors.top: parent.top
+        anchors.topMargin: -45
+
+        TextInput {
+            id: textTelepon
+            property string placeholderText: "Telepon (optional)"
+            anchors.verticalCenter: parent.verticalCenter
+            Text {
+                text: textTelepon.placeholderText
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.hint
+                visible: !textTelepon.text
+                font.pixelSize: 18
+            }
+            anchors.right: parent.right
+            anchors.left: parent.left
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 18
+        }
+    }
+
+    Rectangle {
+        id: inputEmail
+        width: 0
+        height: 40
+        color: appStyle.inputTxt
+        border.color: appStyle.border
+        border.width: 2
+        radius: 10
+        anchors.left: inputTelepon.right
+        anchors.leftMargin: 10
+        anchors.right: parent.right
+        anchors.rightMargin: 10
+        anchors.top: parent.top
+        anchors.topMargin: -45
+
+        TextInput {
+            id: textEmail
+            property string placeholderText: "Email (opetional)"
+            anchors.verticalCenter: parent.verticalCenter
+            Text {
+                text: textEmail.placeholderText
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.hint
+                visible: !textEmail.text
                 font.pixelSize: 18
             }
             anchors.right: parent.right
@@ -300,70 +374,70 @@ Page {
                 wrapMode: Text.Wrap
                 color: appStyle.text
                 renderType: Text.NativeRendering
-                horizontalAlignment:Text.AlignHCenter
+                horizontalAlignment: Text.AlignHCenter
             }
             height: 40
         }
 
-        rowDelegate: Rectangle {
-            property int sizeOpen: 50
-            property int sizeClosed: 50
 
-            id: rowDelegate
-            color: styleData.alternate ? appStyle.bgCard : appStyle.background
-            height: getSize()
+                rowDelegate: Rectangle {
+                    property int sizeOpen: 50
+                    property int sizeClosed: 50
 
-            function getSize() {
-                if(!tableView.selection.contains(styleData.row)) {
-                    doClose.start();
-                    return sizeClosed;
-                }
-                return sizeOpen;
-            }
+                    id: rowDelegate
+                    color: styleData.alternate ? appStyle.bgCard : appStyle.background
+                    height: getSize()
 
-            MouseArea {
-                height: sizeClosed
-                propagateComposedEvents: true
-                preventStealing: true
-                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                    function getSize() {
+                        if(!tableView.selection.contains(styleData.row)) {
+                            doClose.start();
+                            return sizeClosed;
+                        }
+                        return sizeOpen;
+                    }
 
-                onClicked: {
-                    if(rowDelegate.sizeOpen == rowDelegate.height) {
-                        tableView.selection.deselect(styleData.row);
-                        doClose.start()
-                    } else {
-                        tableView.selection.clear();
-                        tableView.selection.select(styleData.row);
-                        doOpen.start();
+                    MouseArea {
+                        height: sizeClosed
+                        propagateComposedEvents: true
+                        preventStealing: true
+                        acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                        onClicked: {
+                            if(rowDelegate.sizeOpen == rowDelegate.height) {
+                                tableView.selection.deselect(styleData.row);
+                                doClose.start()
+                            } else {
+                                tableView.selection.clear();
+                                tableView.selection.select(styleData.row);
+                                doOpen.start();
+                            }
+                        }
+                    }
+
+                    ParallelAnimation {
+                        id: doOpen
+                        running: false
+                        NumberAnimation {
+                            target: rowDelegate;
+                            easing.type: Easing.OutSine;
+                            property: "height";
+                            to: sizeOpen;
+                            duration: 100
+                        }
+                    }
+
+                    ParallelAnimation {
+                        id: doClose
+                        running: false
+                        NumberAnimation {
+                            target: rowDelegate;
+                            easing.type: Easing.OutSine;
+                            property: "height";
+                            to: sizeClosed;
+                            duration: 100;
+                        }
                     }
                 }
-            }
-
-            ParallelAnimation {
-                id: doOpen
-                running: false
-                NumberAnimation {
-                    target: rowDelegate;
-                    easing.type: Easing.OutSine;
-                    property: "height";
-                    to: sizeOpen;
-                    duration: 100
-                }
-            }
-
-            ParallelAnimation {
-                id: doClose
-                running: false
-                NumberAnimation {
-                    target: rowDelegate;
-                    easing.type: Easing.OutSine;
-                    property: "height";
-                    to: sizeClosed;
-                    duration: 100;
-                }
-            }
-        }
-
         model: pesanan
 
         ListModel {
@@ -556,33 +630,30 @@ Page {
             width: tableView2.viewport.width * 4 / 20
         }
 
-//        itemDelegate: Rectangle {
-//                width: 200
-//                height: 200
-//
-//                border.color: appStyle.header1
-//                color: appStyle.background
-//
-//
-//                Rectangle {
-//                    anchors.fill: parent
-//                    anchors.rightMargin: 1
-//                    opacity: 0.9
-//                    Text {
-//                        id: textItem
-//                        opacity: 1
-//                        anchors.fill: parent
-//                        verticalAlignment: Text.AlignVCenter
-//                        horizontalAlignment: Text.AlignHCenter
-//                        anchors.leftMargin: 0
-//                        text: styleData.value
-//                        elide: Text.ElideRight
-//                        color: appStyle.text
-//                        renderType: Text.NativeRendering
-//                    }
-//                }
-//            }
 
+        //        itemDelegate: Rectangle {
+        //                width: 200
+        //                height: 200
+        //                border.color: appStyle.header1
+        //                color: appStyle.background
+        //                Rectangle {
+        //                    anchors.fill: parent
+        //                    anchors.rightMargin: 1
+        //                    opacity: 0.9
+        //                    Text {
+        //                        id: textItem
+        //                        opacity: 1
+        //                        anchors.fill: parent
+        //                        verticalAlignment: Text.AlignVCenter
+        //                        horizontalAlignment: Text.AlignHCenter
+        //                        anchors.leftMargin: 0
+        //                        text: styleData.value
+        //                        elide: Text.ElideRight
+        //                        color: appStyle.text
+        //                        renderType: Text.NativeRendering
+        //                    }
+        //                }
+        //            }
         itemDelegate: Rectangle {
             border.color: appStyle.header1
             color: "transparent"
@@ -600,7 +671,7 @@ Page {
                 wrapMode: Text.Wrap
                 color: appStyle.text
                 renderType: Text.NativeRendering
-                horizontalAlignment:Text.AlignHCenter
+                horizontalAlignment: Text.AlignHCenter
             }
             height: 40
         }
@@ -635,65 +706,65 @@ Page {
             }
         }
 
-        rowDelegate: Rectangle {
-            property int sizeOpen: 50
-            property int sizeClosed: 50
 
-            id: rowDelegate
-            color: styleData.alternate ? appStyle.bgCard : appStyle.background
-            height: getSize()
+                rowDelegate: Rectangle {
+                    property int sizeOpen: 50
+                    property int sizeClosed: 50
 
-            function getSize() {
-                if(!tableView2.selection.contains(styleData.row)) {
-                    doClose.start();
-                    return sizeClosed;
-                }
-                return sizeOpen;
-            }
+                    id: rowDelegate
+                    color: styleData.alternate ? appStyle.bgCard : appStyle.background
+                    height: getSize()
 
-            MouseArea {
-                height: sizeClosed
-                propagateComposedEvents: true
-                preventStealing: true
-                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                    function getSize() {
+                        if(!tableView2.selection.contains(styleData.row)) {
+                            doClose.start();
+                            return sizeClosed;
+                        }
+                        return sizeOpen;
+                    }
 
-                onClicked: {
-                    if(rowDelegate.sizeOpen == rowDelegate.height) {
-                        tableView2.selection.deselect(styleData.row);
-                        doClose.start()
-                    } else {
-                        tableView2.selection.clear();
-                        tableView2.selection.select(styleData.row);
-                        doOpen.start();
+                    MouseArea {
+                        height: sizeClosed
+                        propagateComposedEvents: true
+                        preventStealing: true
+                        acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                        onClicked: {
+                            if(rowDelegate.sizeOpen == rowDelegate.height) {
+                                tableView2.selection.deselect(styleData.row);
+                                doClose.start()
+                            } else {
+                                tableView2.selection.clear();
+                                tableView2.selection.select(styleData.row);
+                                doOpen.start();
+                            }
+                        }
+                    }
+
+                    ParallelAnimation {
+                        id: doOpen
+                        running: false
+                        NumberAnimation {
+                            target: rowDelegate;
+                            easing.type: Easing.OutSine;
+                            property: "height";
+                            to: sizeOpen;
+                            duration: 100
+                        }
+                    }
+
+                    ParallelAnimation {
+                        id: doClose
+                        running: false
+                        NumberAnimation {
+                            target: rowDelegate;
+                            easing.type: Easing.OutSine;
+                            property: "height";
+                            to: sizeClosed;
+                            duration: 100;
+                        }
                     }
                 }
-            }
-
-            ParallelAnimation {
-                id: doOpen
-                running: false
-                NumberAnimation {
-                    target: rowDelegate;
-                    easing.type: Easing.OutSine;
-                    property: "height";
-                    to: sizeOpen;
-                    duration: 100
-                }
-            }
-
-            ParallelAnimation {
-                id: doClose
-                running: false
-                NumberAnimation {
-                    target: rowDelegate;
-                    easing.type: Easing.OutSine;
-                    property: "height";
-                    to: sizeClosed;
-                    duration: 100;
-                }
-            }
-        }
-
         model: menunya
 
         ListModel {
@@ -837,7 +908,8 @@ Page {
 }
 
 /*##^## Designer {
-    D{i:4;anchors_y:11}D{i:7;anchors_width:438;anchors_y:0}D{i:10;anchors_width:376}D{i:18;anchors_height:539;anchors_width:598;anchors_y:70}
-D{i:13;anchors_width:600}D{i:25;anchors_y:15}D{i:21;anchors_width:600}
+    D{i:4;anchors_y:11}D{i:7;anchors_width:438;anchors_y:0}D{i:10;anchors_width:376}D{i:13;anchors_width:600}
+D{i:18;anchors_height:539;anchors_width:598;anchors_y:70}D{i:21;anchors_width:600}
+D{i:25;anchors_y:15}
 }
  ##^##*/

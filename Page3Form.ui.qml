@@ -18,6 +18,8 @@ Page {
 
     header: Label {
         text: qsTr("Pembayaran")
+        anchors.left: parent.left
+        anchors.leftMargin: 10
         font.bold: true
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
@@ -35,15 +37,86 @@ Page {
         anchors.leftMargin: 0
     }
 
+    Rectangle {
+        id: rectMeja
+        width: 100
+        height: 40
+        color: appStyle.inputTxt
+        border.color: appStyle.border
+        border.width: 2
+        radius: 10
+        anchors.left: parent.left
+        anchors.leftMargin: 200
+        anchors.top: parent.top
+        anchors.topMargin: -45
+
+        TextInput {
+            id: inputMeja
+            property string placeholderText: "No Meja.."
+            anchors.verticalCenter: parent.verticalCenter
+            Text {
+                text: inputMeja.placeholderText
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: appStyle.hint
+                visible: !inputMeja.text
+                font.pixelSize: 18
+            }
+            anchors.right: parent.right
+            anchors.left: parent.left
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 18
+        }
+    }
+
+    Button {
+        id: cari
+        anchors.top: parent.top
+        anchors.topMargin: -45
+        anchors.left: rectMeja.right
+        anchors.leftMargin: 10
+        Text {
+            text: qsTr("Cari")
+            font.bold: true
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: appStyle.background
+            font.pixelSize: 18
+        }
+        anchors.right: button1.left
+        anchors.rightMargin: 10
+        style: ButtonStyle {
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 40
+                border.width: control.activeFocus ? 2 : 1
+                border.color: appStyle.border
+                radius: 10
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? appStyle.background : appStyle.button2
+                    }
+                }
+            }
+        }
+    }
+
     TableView {
         id: tableView3
-        width: 893
-        anchors.bottom: parent.bottom
+        x: 10
+        width: 890
+        anchors.bottom: button5.top
         anchors.bottomMargin: 10
         anchors.left: parent.left
-        anchors.leftMargin: 10
+        anchors.leftMargin: 9
         anchors.top: rectangle.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: 64
         currentRow: 0
 
         frameVisible: false
@@ -53,6 +126,21 @@ Page {
         Layout.minimumHeight: 240
         Layout.preferredWidth: 600
         Layout.preferredHeight: 400
+
+        TableViewColumn {
+            id: checked
+            title: ""
+            role: "checked"
+            movable: false
+            resizable: false
+            width: tableView3.viewport.width * 1 / 20
+            delegate: CheckBox {
+                anchors.left: parent.left
+                anchors.leftMargin: parent.width/2 - 6
+                checked: styleData.value
+                enabled: true
+            }
+        }
 
         TableViewColumn {
             id: qty1
@@ -78,7 +166,7 @@ Page {
             role: "catatan1"
             movable: false
             resizable: false
-            width: tableView3.viewport.width * 11 / 20
+            width: tableView3.viewport.width * 10 / 20
         }
 
         TableViewColumn {
@@ -101,10 +189,12 @@ Page {
 
         style: TableViewStyle {
             headerDelegate: Rectangle {
-                height: textItem2.implicitHeight * 1.2
+                height: textItem.implicitHeight * 1.2
                 color: appStyle.header1
+                //width: textItem.implicitWidth
+
                 Text {
-                    id: textItem2
+                    id: textItem
                     anchors.fill: parent
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignHCenter
@@ -123,6 +213,15 @@ Page {
                     width: 1
                     color: appStyle.header1
                 }
+                CheckBox {
+                    id: activateAllEvents
+                    anchors.top: parent.top
+                    anchors.topMargin: 1
+                    anchors.left: parent.left
+                    anchors.leftMargin: parent.width/2 - 6
+                    checked: true
+                    visible: styleData.column === 0
+                }
             }
         }
 
@@ -140,9 +239,17 @@ Page {
                 wrapMode: Text.Wrap
                 color: appStyle.text
                 renderType: Text.NativeRendering
-                horizontalAlignment:Text.AlignHCenter
+                horizontalAlignment: Text.AlignHCenter
             }
-            height: 40
+        }
+
+        // setting Height
+        rowDelegate: Rectangle{
+            id: rowDelegate
+            color: styleData.alternate ? appStyle.bgCard : appStyle.background
+            width: childrenRect.width
+            border.color: appStyle.header1
+            height: 50
         }
 
         model: pesananya
@@ -151,6 +258,7 @@ Page {
             id: pesananya
             ListElement {
                 qty1: "1"
+                checked: true
                 menu1: "Ayam Bakar Madu"
                 catatan1: "Ayamnya jangan dibakar, engga pake madu"
                 harga1: "100.000"
@@ -158,6 +266,7 @@ Page {
             }
             ListElement {
                 qty1: "2"
+                checked: true
                 menu1: "Esteh Manis"
                 catatan1: "yang satu tehnya ga pake es sama ga manis"
                 harga1: "100.000"
@@ -165,6 +274,7 @@ Page {
             }
             ListElement {
                 qty1: "5"
+                checked: true
                 menu1: "Bubur ayam"
                 catatan1: "1 ga pake bubur, 1 ga pake ayam, 2 ga pake bubur ayam, 1 lengkap"
                 harga1: "10.000"
@@ -174,29 +284,118 @@ Page {
     }
 
     Label {
-        id: labelTotal
-        x: 1088
-        y: 26
-        text: qsTr("Rp 1.200.500")
-        anchors.top: label1.bottom
-        anchors.topMargin: -25
-        anchors.right: parent.right
-        anchors.rightMargin: 9
+        id: labelCash
+        x: 1155
+        y: 408
+        text: qsTr("Rp 500")
+        anchors.bottom: labelDebit.top
+        anchors.bottomMargin: 0
+        font.pixelSize: 14
+        anchors.right: tableView4.right
+        anchors.rightMargin: 0
         font.bold: true
         horizontalAlignment: Text.AlignLeft
-        font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
         color: appStyle.text
     }
 
     Label {
+        id: txtCash
+        text: qsTr("Cash")
+        anchors.top: labelTotal.bottom
+        anchors.topMargin: 0
+        anchors.left: tableView4.left
+        anchors.leftMargin: 0
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        font.pixelSize: Qt.application.font.pixelSize
+        padding: 10
+        color: appStyle.button1
+    }
+
+    Label {
+        id: labelDebit
+        x: 1129
+        y: 450
+        text: qsTr("Rp 200.000")
+        anchors.bottom: labelCredit.top
+        anchors.bottomMargin: 0
+        font.pixelSize: 14
+        anchors.right: tableView4.right
+        anchors.rightMargin: 0
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        padding: 10
+        color: appStyle.text
+    }
+
+    Label {
+        id: txtDebit
+        text: qsTr("Debit")
+        anchors.left: tableView4.left
+        anchors.leftMargin: 0
+        anchors.top: labelCash.bottom
+        anchors.topMargin: 0
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        font.pixelSize: Qt.application.font.pixelSize
+        padding: 10
+        color: appStyle.button1
+    }
+
+    Label {
+        id: labelCredit
+        x: 1087
+        y: 498
+        text: qsTr("Rp 1.000.000")
+        anchors.bottom: tableView3.bottom
+        anchors.bottomMargin: 0
+        font.pixelSize: 14
+        anchors.right: tableView4.right
+        anchors.rightMargin: 0
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        padding: 10
+        color: appStyle.text
+    }
+
+    Label {
+        id: txtCredit
+        text: qsTr("Credit")
+        anchors.left: tableView4.left
+        anchors.leftMargin: 0
+        anchors.top: labelDebit.bottom
+        anchors.topMargin: 0
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        font.pixelSize: Qt.application.font.pixelSize
+        padding: 10
+        color: appStyle.button1
+    }
+
+    Label {
+        id: labelTotal
+        x: 1128
+        y: 371
+        text: qsTr("Rp 1.200.500")
+        anchors.bottom: labelCash.top
+        anchors.bottomMargin: 0
+        font.pixelSize: 14
+        anchors.right: tableView4.right
+        anchors.rightMargin: 0
+        font.bold: true
+        horizontalAlignment: Text.AlignLeft
+        padding: 10
+        color: appStyle.button
+    }
+
+    Label {
         id: label1
-        x: 1176
         text: qsTr("Total")
-        anchors.top: parent.top
-        anchors.topMargin: -55
-        anchors.right: parent.right
-        anchors.rightMargin: 52
+        anchors.left: tableView4.left
+        anchors.leftMargin: 0
+        anchors.top: labelTotal.top
+        anchors.topMargin: 0
         font.bold: true
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize
@@ -206,55 +405,29 @@ Page {
 
     Label {
         id: textCustomer
-        x: 1088
-        y: 26
+        color: "#222222"
         text: qsTr("Ini Budi Dong")
+        anchors.top: labelCustomer.bottom
+        anchors.topMargin: -20
+        anchors.left: parent.left
+        anchors.leftMargin: 10
+        anchors.horizontalCenterOffset: -541
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: label1.bottom
-        anchors.topMargin: -25
         font.bold: true
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
         padding: 10
-        color: appStyle.text
     }
 
     Label {
         id: labelCustomer
-        x: 1176
         text: qsTr("Customer")
+        anchors.left: parent.left
+        anchors.leftMargin: 10
+        anchors.horizontalCenterOffset: -587
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        anchors.topMargin: -55
-        font.bold: true
-        horizontalAlignment: Text.AlignLeft
-        font.pixelSize: Qt.application.font.pixelSize
-        padding: 10
-        color: appStyle.button1
-    }
-
-    Label {
-        id: textMeja
-        x: 1088
-        y: 26
-        text: qsTr("5")
-        anchors.horizontalCenter: labelMeja.horizontalCenter
-        anchors.top: label1.bottom
-        anchors.topMargin: -25
-        font.bold: true
-        horizontalAlignment: Text.AlignLeft
-        font.pixelSize: Qt.application.font.pixelSize * 2
-        padding: 10
-        color: appStyle.text
-    }
-
-    Label {
-        id: labelMeja
-        text: qsTr("Meja")
-        anchors.left: parent.left
-        anchors.leftMargin: 250
-        anchors.top: parent.top
-        anchors.topMargin: -55
+        anchors.topMargin: 0
         font.bold: true
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize
@@ -274,7 +447,7 @@ Page {
         Button {
             id: button2
             Text {
-                text: qsTr("Voucher")
+                text: qsTr("Credit")
                 font.bold: true
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -282,6 +455,11 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 color: appStyle.background
                 font.pixelSize: 18
+            }
+            onClicked: {
+                var component = Qt.createComponent("bayar.qml")
+                var menu = component.createObject(this)
+                menu.show()
             }
             anchors.left: button1.right
             anchors.leftMargin: 10
@@ -308,7 +486,7 @@ Page {
             id: button1
             x: 50
             Text {
-                text: qsTr("Kredit")
+                text: qsTr("Debit")
                 font.bold: true
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -316,6 +494,11 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 color: appStyle.background
                 font.pixelSize: 18
+            }
+            onClicked: {
+                var component = Qt.createComponent("bayar.qml")
+                var menu = component.createObject(this)
+                menu.show()
             }
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
@@ -341,7 +524,7 @@ Page {
             id: button
             x: 8
             Text {
-                text: qsTr("Debit")
+                text: qsTr("Cash")
                 font.bold: true
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -349,6 +532,11 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 color: appStyle.background
                 font.pixelSize: 18
+            }
+            onClicked: {
+                var component = Qt.createComponent("bayar.qml")
+                var menu = component.createObject(this)
+                menu.show()
             }
             anchors.right: button1.left
             anchors.rightMargin: 10
@@ -375,12 +563,13 @@ Page {
     TableView {
         id: tableView4
         height: 524
+        z: 3
         anchors.left: rectangle1.left
         anchors.leftMargin: 0
         anchors.top: rectangle1.bottom
         anchors.topMargin: 10
         anchors.bottom: rectangle3.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 255
         anchors.right: parent.right
         anchors.rightMargin: 10
         currentRow: 0
@@ -461,22 +650,29 @@ Page {
                 wrapMode: Text.Wrap
                 color: appStyle.text
                 renderType: Text.NativeRendering
-                horizontalAlignment:Text.AlignHCenter
+                horizontalAlignment: Text.AlignHCenter
             }
             height: 40
         }
 
-//        itemDelegate: Item {
-//            Text {
-//                anchors.verticalCenter: parent.verticalCenter
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                color: appStyle.text
-//                elide: styleData.elideMode
-//                text: styleData.value
-//            }
-//            height: 40
-//        }
+        // setting Height
+        rowDelegate: Rectangle{
+            id: rowDelegate2
+            color: styleData.alternate ? appStyle.bgCard : appStyle.background
+            width: childrenRect.width
+            border.color: appStyle.header1
+        }
 
+        //        itemDelegate: Item {
+        //            Text {
+        //                anchors.verticalCenter: parent.verticalCenter
+        //                anchors.horizontalCenter: parent.horizontalCenter
+        //                color: appStyle.text
+        //                elide: styleData.elideMode
+        //                text: styleData.value
+        //            }
+        //            height: 40
+        //        }
 
         //        rowDelegate: Rectangle {
         //            property int sizeOpen: 50
@@ -543,7 +739,7 @@ Page {
             ListElement {
                 no: "1"
                 metode: "Voucher GoPay"
-                jumlah: "5.000"
+                jumlah: "10.000"
             }
             ListElement {
                 no: "2"
@@ -557,8 +753,8 @@ Page {
             }
             ListElement {
                 no: "4"
-                metode: "Promo"
-                jumlah: "100"
+                metode: "Debit"
+                jumlah: "190.000"
             }
         }
     }
@@ -568,17 +764,18 @@ Page {
         y: 558
         height: 41
         color: appStyle.background
+        anchors.left: parent.left
+        anchors.leftMargin: 937
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
-        anchors.left: tableView3.right
-        anchors.leftMargin: 39
         anchors.right: parent.right
         anchors.rightMargin: 10
         Button {
             id: button4
+            height: 40
             anchors.right: parent.right
-            anchors.rightMargin: 10
-            
+            anchors.rightMargin: 0
+
             Text {
                 text: qsTr("Bayar")
                 font.bold: true
@@ -589,10 +786,8 @@ Page {
                 color: appStyle.background
                 font.pixelSize: 18
             }
-            anchors.left: button5.right
-            anchors.leftMargin: 10
-            anchors.top: parent.top
-            anchors.topMargin: 0
+            anchors.left: parent.left
+            anchors.leftMargin: 0
             style: ButtonStyle {
                 background: Rectangle {
                     implicitWidth: 100
@@ -609,41 +804,216 @@ Page {
                 }
             }
         }
+    }
+    Button {
+        id: button5
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
+        anchors.right: tableView3.right
+        anchors.rightMargin: 0
+        //            onClicked: {
+        //                    var component = Qt.createComponent("SplitBill.qml")
+        //                    var splits = component.createObject(this)
+        //                    splits.show()
+        //            }
+        Text {
+            text: qsTr("Proses")
+            font.bold: true
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: appStyle.background
+            font.pixelSize: 18
+        }
 
-        Button {
-            id: button5
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            onClicked: {
-                    var component = Qt.createComponent("SplitBill.qml")
-                    var splits = component.createObject(this)
-                    splits.show()
+        style: ButtonStyle {
+            background: Rectangle {
+                implicitWidth: 200
+                implicitHeight: 40
+                border.width: control.activeFocus ? 2 : 1
+                border.color: appStyle.border
+                radius: 10
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? appStyle.background : appStyle.button1
+                    }
+                }
             }
+        }
+    }
+
+    Rectangle {
+        id: rectangle2
+        height: 76
+        color: "#ffffff"
+        anchors.top: tableView4.bottom
+        anchors.topMargin: -10
+        anchors.left: tableView4.left
+        anchors.leftMargin: 0
+        anchors.right: tableView4.right
+        anchors.rightMargin: 0
+        border.width: 2
+        border.color: appStyle.border
+        radius: 5
+        z: 2
+        transformOrigin: Item.Center
+
+        Label {
+            id: txtTax
+            text: qsTr("Tax")
+            z: 5
+            anchors.top: rectangle2.top
+            anchors.topMargin: 10
+            anchors.left: tableView4.left
+            anchors.leftMargin: 0
+            font.bold: true
+            horizontalAlignment: Text.AlignLeft
+            font.pixelSize: Qt.application.font.pixelSize
+            padding: 10
+            color: appStyle.button1
+        }
+
+        Label {
+            id: labelTax
+            x: 1199
+            color: "#c0c0c0"
+            text: qsTr("Rp 500")
+            anchors.top: txtTaxPPn.top
+            anchors.topMargin: 0
+            z: 6
+            font.pixelSize: 14
+            anchors.right: parent.right
+            anchors.rightMargin: 0
+            font.bold: true
+            horizontalAlignment: Text.AlignLeft
+            padding: 10
+        }
+
+        Label {
+            id: txtTaxPPn
+            text: qsTr("PPN (10%)")
+            z: 4
+            anchors.top: txtTax.bottom
+            anchors.topMargin: -20
+            anchors.left: tableView4.left
+            anchors.leftMargin: 0
+            font.bold: false
+            horizontalAlignment: Text.AlignLeft
+            font.pixelSize: Qt.application.font.pixelSize
+            padding: 10
+            color: appStyle.button1
+        }
+
+        Label {
+            id: labelTaxPPh
+            x: 1199
+            color: "#c0c0c0"
+            text: qsTr("Rp 500")
+            anchors.top: txtTaxPPh.top
+            anchors.topMargin: 0
+            z: 6
+            font.pixelSize: 14
+            anchors.right: parent.right
+            anchors.rightMargin: 0
+            font.bold: true
+            horizontalAlignment: Text.AlignLeft
+            padding: 10
+        }
+
+        Label {
+            id: txtTaxPPh
+            text: qsTr("PPH (5%)")
+            z: 4
+            anchors.top: txtTaxPPn.bottom
+            anchors.topMargin: -20
+            anchors.left: tableView4.left
+            anchors.leftMargin: 0
+            font.bold: false
+            horizontalAlignment: Text.AlignLeft
+            font.pixelSize: Qt.application.font.pixelSize
+            padding: 10
+            color: appStyle.button1
+        }
+
+        Rectangle {
+            id: rectangle4
+            height: 1
+            color: appStyle.border
+            anchors.topMargin: 10
+            anchors.right: parent.right
+            anchors.left: parent.left
+            anchors.top: parent.top
+            border.width: 2
+            border.color: appStyle.border
+            z: 7
+        }
+    }
+
+    Rectangle {
+        id: textVoucher
+        height: 40
+        color: appStyle.inputTxt
+        border.color: appStyle.border
+        border.width: 2
+        radius: 10
+        anchors.left: tableView4.left
+        anchors.leftMargin: 0
+        anchors.right: submitVoucher.left
+        anchors.rightMargin: 10
+        anchors.top: parent.top
+        anchors.topMargin: -45
+
+        TextInput {
+            id: inputVoucher
+            property string placeholderText: "Voucher"
+            anchors.verticalCenter: parent.verticalCenter
             Text {
-                text: qsTr("Split Bill / Payment")
-                font.bold: true
+                text: inputVoucher.placeholderText
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                color: appStyle.background
+                color: appStyle.hint
+                visible: !inputVoucher.text
                 font.pixelSize: 18
             }
+            anchors.right: parent.right
+            anchors.left: parent.left
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 18
+        }
+    }
 
-            anchors.top: parent.top
-            anchors.topMargin: 0
-            style: ButtonStyle {
-                background: Rectangle {
-                    implicitWidth: 200
-                    implicitHeight: 40
-                    border.width: control.activeFocus ? 2 : 1
-                    border.color: appStyle.border
-                    radius: 10
-                    gradient: Gradient {
-                        GradientStop {
-                            position: 0
-                            color: control.pressed ? appStyle.background : appStyle.button1
-                        }
+    Button {
+        id: submitVoucher
+        anchors.top: parent.top
+        anchors.topMargin: -45
+        Text {
+            text: qsTr("Submit")
+            font.bold: true
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: appStyle.background
+            font.pixelSize: 18
+        }
+        anchors.right: parent.right
+        anchors.rightMargin: 10
+        style: ButtonStyle {
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 40
+                border.width: control.activeFocus ? 2 : 1
+                border.color: appStyle.border
+                radius: 10
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? appStyle.background : appStyle.button2
                     }
                 }
             }
@@ -652,7 +1022,9 @@ Page {
 }
 
 /*##^## Designer {
-    D{i:18;anchors_y:"-36"}D{i:27;anchors_height:528;anchors_y:71}D{i:16;anchors_width:451;anchors_x:820}
-D{i:38;anchors_width:450;anchors_x:830}
+    D{i:140;anchors_x:315}D{i:22;anchors_x:1088;anchors_y:408}D{i:23;anchors_x:936}D{i:92;anchors_y:450}
+D{i:162;anchors_x:933}D{i:216;anchors_y:498}D{i:217;anchors_x:937}D{i:219;anchors_x:936}
+D{i:220;anchors_y:26}D{i:471;anchors_height:52;anchors_width:200;anchors_x:72;anchors_y:89}
+D{i:472;anchors_width:100}
 }
  ##^##*/
