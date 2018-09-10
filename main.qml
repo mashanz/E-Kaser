@@ -24,8 +24,8 @@ ApplicationWindow {
         Page3Form {
         }
 
-//        Page1Form {
-//        }
+       Page1Form {
+       }
 
     }
 
@@ -75,23 +75,23 @@ ApplicationWindow {
             height: 40
         }
 
-//        TabButton {
-//            Text {
-//                text: qsTr("Registrasi")
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                anchors.verticalCenter: parent.verticalCenter
-//                font.bold: true
-//                verticalAlignment: Text.AlignVCenter
-//                horizontalAlignment: Text.AlignHCenter
-//                color: tabBar.currentIndex == 2 ? appStyle.button : appStyle.background
-//                font.pixelSize: 18
-//            }
-//            background: Rectangle {
-//                color: tabBar.currentIndex == 2 ? appStyle.background : appStyle.header1
-//                radius: 0
-//            }
-//            anchors.bottom: parent.bottom
-//            height: 40
-//        }
+       TabButton {
+           Text {
+               text: qsTr("History")
+               anchors.horizontalCenter: parent.horizontalCenter
+               anchors.verticalCenter: parent.verticalCenter
+               font.bold: true
+               verticalAlignment: Text.AlignVCenter
+               horizontalAlignment: Text.AlignHCenter
+               color: tabBar.currentIndex == 2 ? appStyle.button : appStyle.background
+               font.pixelSize: 18
+           }
+           background: Rectangle {
+               color: tabBar.currentIndex == 2 ? appStyle.background : appStyle.header1
+               radius: 0
+           }
+           anchors.bottom: parent.bottom
+           height: 40
+       }
     }
 }

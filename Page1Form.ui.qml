@@ -14,7 +14,7 @@ Page {
     }
 
     header: Label {
-        text: qsTr("Registrasi")
+        text: qsTr("History")
         font.bold: true
         horizontalAlignment: Text.AlignLeft
         font.pixelSize: Qt.application.font.pixelSize * 2
@@ -33,227 +33,248 @@ Page {
     }
 
     Rectangle {
-        id: rectangle6
-        width: 500
-        height: 322
-        color: appStyle.bgCard
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
-        border.width: 2
+        id: rectMeja
+        width: 100
+        height: 40
+        color: appStyle.inputTxt
         border.color: appStyle.border
+        border.width: 2
         radius: 10
+        anchors.left: parent.left
+        anchors.leftMargin: 100
+        anchors.top: parent.top
+        anchors.topMargin: -45
 
-        Rectangle {
-            id: rectangle4
-            width: 400
-            height: 50
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: appStyle.inputTxt
-            border.width: 2
-            border.color: appStyle.border
-            radius: 10
-            anchors.top: rectangle3.bottom
-            anchors.topMargin: 10
-            anchors.horizontalCenterOffset: 0
-
-            TextInput {
-                id: textInput4
-                property string placeholderText: "Masukan Email"
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
-                font.bold: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 18
-            }
-
+        TextInput {
+            id: inputMeja
+            property string placeholderText: "No Meja.."
+            anchors.verticalCenter: parent.verticalCenter
             Text {
-                y: 15
+                text: inputMeja.placeholderText
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
+                anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: appStyle.hint
-                text: textInput4.placeholderText
-                visible: !textInput4.text
+                visible: !inputMeja.text
                 font.pixelSize: 18
             }
+            anchors.right: parent.right
+            anchors.left: parent.left
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 18
         }
+    }
 
-        Rectangle {
-            id: rectangle3
-            width: 400
-            height: 50
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: appStyle.inputTxt
-            border.width: 2
-            border.color: appStyle.border
-            radius: 10
-            anchors.top: rectangle2.bottom
-            anchors.topMargin: 10
-            anchors.horizontalCenterOffset: 0
-            TextInput {
-                id: textInput3
-                property string placeholderText: "Masukan Nomor Telepon"
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
-                font.bold: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 18
-            }
+    Rectangle {
+        id: rectNama
+        width: 246
+        height: 40
+        color: appStyle.inputTxt
+        border.color: appStyle.border
+        border.width: 2
+        radius: 10
+        anchors.left: rectMeja.right
+        anchors.leftMargin: 10
+        anchors.top: parent.top
+        anchors.topMargin: -45
 
+        TextInput {
+            id: inputNama
+            property string placeholderText: "Nama"
+            anchors.verticalCenter: parent.verticalCenter
             Text {
-                y: 15
-                text: textInput3.placeholderText
+                text: inputNama.placeholderText
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
+                anchors.horizontalCenter: parent.horizontalCenter
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: appStyle.hint
-                visible: !textInput3.text
+                visible: !inputNama.text
                 font.pixelSize: 18
             }
+            anchors.right: parent.right
+            anchors.left: parent.left
+            font.bold: true
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 18
         }
+    }
 
-        Rectangle {
-            id: rectangle2
-            width: 400
-            height: 50
+    Button {
+        id: cari
+        anchors.top: parent.top
+        anchors.topMargin: -45
+        anchors.left: rectNama.right
+        anchors.leftMargin: 10
+        Text {
+            text: qsTr("Cari")
+            font.bold: true
+            anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            color: appStyle.inputTxt
-            border.width: 2
-            border.color: appStyle.border
-            radius: 10
-            anchors.top: rectangle1.bottom
-            anchors.topMargin: 10
-            anchors.horizontalCenterOffset: 0
-            TextInput {
-                id: textInput2
-                property string placeholderText: "Masukan Nama Pelanggan"
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
-                font.bold: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 18
-            }
-
-            Text {
-                y: 15
-                text: textInput2.placeholderText
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: appStyle.hint
-                visible: !textInput2.text
-                font.pixelSize: 18
-            }
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: appStyle.background
+            font.pixelSize: 18
         }
-
-        Rectangle {
-            id: rectangle1
-            width: 400
-            height: 50
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: appStyle.inputTxt
-            border.width: 2
-            border.color: appStyle.border
-            radius: 10
-            anchors.top: parent.top
-            anchors.topMargin: 20
-            anchors.horizontalCenterOffset: 0
-            TextInput {
-                id: textInput1
-                property string placeholderText: "Masukan Nomor Meja"
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
-                font.bold: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 18
-            }
-
-            Text {
-                y: 15
-                text: textInput1.placeholderText
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: appStyle.hint
-                visible: !textInput1.text
-                font.pixelSize: 18
-            }
-            //            TextField {
-            //                id: searchBox
-            //                placeholderText: "Nomor Meja"
-            //                inputMethodHints: Qt.ImhNoPredictiveText
-            //                width: 100
-            //                horizontalAlignment: Text.AlignHCenter
-            //                anchors.horizontalCenter: parent.horizontalCenter
-            //                anchors.right: parent.right
-            //                anchors.verticalCenter: parent.verticalCenter
-            //                background: Rectangle {
-            //                    color: appStyle.deactive
-            //                    radius: 10
-            //                }
-            //            }
-        }
-
-        Button {
-            id: button
-            width: 400
-            height: 40
-            anchors.horizontalCenterOffset: 1
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: rectangle4.bottom
-            anchors.topMargin: 10
-            anchors.leftMargin: 10
-
-            Text {
-                text: qsTr("Register")
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.right: parent.right
-                anchors.left: parent.left
-                font.bold: true
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                color: appStyle.background
-                font.pixelSize: 18
-            }
-
-            style: ButtonStyle {
-                background: Rectangle {
-                    implicitWidth: 100
-                    implicitHeight: 25
-                    border.width: control.activeFocus ? 2 : 1
-                    border.color: appStyle.border
-                    radius: 10
-                    gradient: Gradient {
-                        GradientStop {
-                            position: 0
-                            color: control.pressed ? appStyle.inputTxt : appStyle.button
-                        }
-                        GradientStop {
-                            position: 1
-                            color: control.pressed ? appStyle.inputTxt : appStyle.button
-                        }
+        anchors.right: button1.left
+        anchors.rightMargin: 10
+        style: ButtonStyle {
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 40
+                border.width: control.activeFocus ? 2 : 1
+                border.color: appStyle.border
+                radius: 10
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: control.pressed ? appStyle.background : appStyle.button2
                     }
                 }
             }
         }
     }
-}
 
-/*##^## Designer {
-    D{i:7;anchors_width:200;anchors_x:540;anchors_y:15}D{i:10;anchors_x:95;anchors_y:15}
-D{i:12;anchors_y:"-183"}D{i:17;anchors_height:20;anchors_width:80;anchors_x:88;anchors_y:15}
-D{i:16;anchors_x:108;anchors_y:15}D{i:22;anchors_height:200;anchors_width:200;anchors_x:540;anchors_y:47}
+    TableView {
+        id: tableView3
+        anchors.top: rectangle.bottom
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.topMargin: -2
+        TableViewColumn {
+            id: checked
+            width: tableView3.viewport.width * 1 / 20
+            movable: false
+            delegate: CheckBox {
+                anchors.left: parent.left
+                enabled: true
+                checked: styleData.value
+                anchors.leftMargin: parent.width / 2 - 6
+            }
+            role: "checked"
+            title: ""
+            resizable: false
+        }
+
+        TableViewColumn {
+            id: meja
+            width: tableView3.viewport.width * 1 / 20
+            movable: false
+            role: "meja"
+            title: "Meja"
+            resizable: false
+        }
+
+        TableViewColumn {
+            id: nama
+            width: tableView3.viewport.width * 4 / 20
+            movable: false
+            role: "nama"
+            title: "Nama"
+            resizable: false
+        }
+
+        TableViewColumn {
+            id: time
+            width: tableView3.viewport.width * 10 / 20
+            movable: false
+            role: "time"
+            title: "Waktu"
+            resizable: false
+        }
+
+        ListModel {
+            id: pesananya
+            ListElement {
+                time: "Senin, 10 Juni 2018 10:00"
+                checked: true
+                meja: "1"
+                nama: "Urik"
+            }
+
+            ListElement {
+                time: "Senin, 10 Juni 2018 17:00"
+                checked: true
+                meja: "2"
+                nama: "Paijo"
+            }
+
+            ListElement {
+                time: "Senin, 10 Juni 2018  16:16"
+                checked: true
+                meja: "5"
+                nama: "Bejo"
+            }
+        }
+        style: TableViewStyle {
+            headerDelegate: Rectangle {
+                height: textItem.implicitHeight * 1.2
+                color: appStyle.header1
+                Text {
+                    id: textItem
+                    color: appStyle.background
+                    text: styleData.value
+                    elide: Text.ElideRight
+                    horizontalAlignment: Text.AlignHCenter
+                    anchors.fill: parent
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    verticalAlignment: Text.AlignVCenter
+                    renderType: Text.NativeRendering
+                }
+
+                Rectangle {
+                    width: 1
+                    color: appStyle.header1
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottomMargin: 1
+                    anchors.topMargin: 1
+                }
+
+                CheckBox {
+                    id: activateAllEvents
+                    anchors.left: parent.left
+                    visible: styleData.column === 0
+                    checked: true
+                    anchors.leftMargin: parent.width / 2 - 6
+                    anchors.top: parent.top
+                    anchors.topMargin: 1
+                }
+            }
+        }
+        Layout.minimumWidth: 400
+        Layout.minimumHeight: 240
+        currentRow: 0
+        frameVisible: false
+        rowDelegate: Rectangle {
+            id: rowDelegate
+            width: childrenRect.width
+            height: 50
+            color: styleData.alternate ? appStyle.bgCard : appStyle.background
+            border.color: appStyle.header1
+        }
+        Layout.preferredWidth: 600
+        itemDelegate: Rectangle {
+            color: "#00000000"
+            Text {
+                id: text1
+                color: appStyle.text
+                text: styleData.value
+                anchors.left: parent.left
+                horizontalAlignment: Text.AlignHCenter
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                wrapMode: Text.Wrap
+                renderType: Text.NativeRendering
+            }
+            border.color: appStyle.header1
+        }
+        sortIndicatorVisible: true
+        model: pesananya
+        Layout.preferredHeight: 400
+    }
 }
- ##^##*/

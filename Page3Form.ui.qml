@@ -136,7 +136,7 @@ Page {
             width: tableView3.viewport.width * 1 / 20
             delegate: CheckBox {
                 anchors.left: parent.left
-                anchors.leftMargin: parent.width/2 - 6
+                anchors.leftMargin: parent.width / 2 - 6
                 checked: styleData.value
                 enabled: true
             }
@@ -191,8 +191,8 @@ Page {
             headerDelegate: Rectangle {
                 height: textItem.implicitHeight * 1.2
                 color: appStyle.header1
-                //width: textItem.implicitWidth
 
+                //width: textItem.implicitWidth
                 Text {
                     id: textItem
                     anchors.fill: parent
@@ -218,7 +218,7 @@ Page {
                     anchors.top: parent.top
                     anchors.topMargin: 1
                     anchors.left: parent.left
-                    anchors.leftMargin: parent.width/2 - 6
+                    anchors.leftMargin: parent.width / 2 - 6
                     checked: true
                     visible: styleData.column === 0
                 }
@@ -244,7 +244,7 @@ Page {
         }
 
         // setting Height
-        rowDelegate: Rectangle{
+        rowDelegate: Rectangle {
             id: rowDelegate
             color: styleData.alternate ? appStyle.bgCard : appStyle.background
             width: childrenRect.width
@@ -456,11 +456,11 @@ Page {
                 color: appStyle.background
                 font.pixelSize: 18
             }
-            onClicked: {
-                var component = Qt.createComponent("bayar.qml")
-                var menu = component.createObject(this)
-                menu.show()
-            }
+            //            onClicked: {
+            //                var component = Qt.createComponent("bayar.qml")
+            //                var menu = component.createObject(this)
+            //                menu.show()
+            //            }
             anchors.left: button1.right
             anchors.leftMargin: 10
             anchors.top: parent.top
@@ -495,11 +495,11 @@ Page {
                 color: appStyle.background
                 font.pixelSize: 18
             }
-            onClicked: {
-                var component = Qt.createComponent("bayar.qml")
-                var menu = component.createObject(this)
-                menu.show()
-            }
+            //            onClicked: {
+            //                var component = Qt.createComponent("bayar.qml")
+            //                var menu = component.createObject(this)
+            //                menu.show()
+            //            }
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
             anchors.topMargin: 0
@@ -533,11 +533,11 @@ Page {
                 color: appStyle.background
                 font.pixelSize: 18
             }
-            onClicked: {
-                var component = Qt.createComponent("bayar.qml")
-                var menu = component.createObject(this)
-                menu.show()
-            }
+            //            onClicked: {
+            //                var component = Qt.createComponent("bayar.qml")
+            //                var menu = component.createObject(this)
+            //                menu.show()
+            //            }
             anchors.right: button1.left
             anchors.rightMargin: 10
             anchors.top: parent.top
@@ -656,7 +656,7 @@ Page {
         }
 
         // setting Height
-        rowDelegate: Rectangle{
+        rowDelegate: Rectangle {
             id: rowDelegate2
             color: styleData.alternate ? appStyle.bgCard : appStyle.background
             width: childrenRect.width
@@ -1022,9 +1022,6 @@ Page {
 }
 
 /*##^## Designer {
-    D{i:140;anchors_x:315}D{i:22;anchors_x:1088;anchors_y:408}D{i:23;anchors_x:936}D{i:92;anchors_y:450}
-D{i:162;anchors_x:933}D{i:216;anchors_y:498}D{i:217;anchors_x:937}D{i:219;anchors_x:936}
-D{i:220;anchors_y:26}D{i:471;anchors_height:52;anchors_width:200;anchors_x:72;anchors_y:89}
-D{i:472;anchors_width:100}
+    D{i:0;autoSize:true;height:480;width:640}
 }
  ##^##*/
